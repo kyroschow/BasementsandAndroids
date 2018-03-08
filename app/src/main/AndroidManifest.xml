@@ -2,6 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.chichow25.basementsandandroids">
 
+    <uses-permission
+        android:required="true"
+        android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission
+        android:required="true"
+        android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:required="true"
+        android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission
+        android:required="true"
+        android:name="android.permission.INTERNET" />
+    
+
     <application
         android:name=".application.BasementsAndAndroidsApplication"
         android:allowBackup="true"
