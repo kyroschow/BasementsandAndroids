@@ -12,5 +12,6 @@ class BasementsAndAndroidsApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Backendless.initApp(BasementAndAndroidsSettings.APPLICATION_ID, BasementAndAndroidsSettings.SECRET_KEY)
+
     }
 }
