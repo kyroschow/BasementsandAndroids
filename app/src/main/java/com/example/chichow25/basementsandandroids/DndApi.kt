@@ -11,6 +11,4 @@ interface DndApi {
     companion object {
         val baseURL = "http://dnd5eapi.co/api/"
     }
-
-
 }
