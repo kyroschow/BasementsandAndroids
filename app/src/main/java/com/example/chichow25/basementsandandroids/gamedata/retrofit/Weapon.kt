@@ -1,4 +1,4 @@
-package com.example.chichow25.basementsandandroids.gamedata
+package com.example.chichow25.basementsandandroids.gamedata.retrofit
 
 import com.google.gson.annotations.SerializedName
 
@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
  * Created by chichow25 on 3/8/18.
  */
 
-data class Equipment(
+data class Weapon(
 		val _id: String,
 		val index: Int,
 		val name: String,
@@ -20,20 +20,4 @@ data class Equipment(
 		val weight: Int,
 		val properties: List<String>,
 		val url: String
-)
-
-data class Cost(
-		val quantity: Int,
-		val unit: String
-)
-
-data class Damage(
-		val dice_count: Int,
-		val dice_value: Int,
-		val damage_type: DamageType
-)
-
-data class DamageType(
-		val url: String,
-		val name: String
 )
