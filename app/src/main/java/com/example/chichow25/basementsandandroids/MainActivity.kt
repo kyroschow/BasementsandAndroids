@@ -7,15 +7,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class MainActivity : AppCompatActivity() {
 
-    private val dndApi : DndApi by lazy {
-        val temp = Retrofit.Builder()
-                .baseUrl(DndApi.baseURL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-                .create(DndApi::class.java)
-        temp
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

@@ -1,4 +1,4 @@
-package com.example.chichow25.basementsandandroids.application
+package com.example.chichow25.basementsandandroids
 
 import android.app.Application
 import io.realm.Realm
