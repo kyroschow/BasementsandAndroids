@@ -1,9 +1,9 @@
-package com.example.chichow25.basementsandandroids.retrofit.models
+package com.example.chichow25.basementsandandroids.gamedata.models
 
 import com.google.gson.annotations.SerializedName
 
 /**
- * Created by chichow25 on 3/19/18.
+ * Created by chichow25 on 3/21/18.
  */
 
 data class Weapon(
@@ -23,14 +23,13 @@ data class Weapon(
 		val url: String
 )
 
+data class Range(
+		val normal: Int
+)
+
 data class Property(
 		val name: String,
 		val url: String
-)
-
-data class Range(
-		val normal: Int,
-		val long: Any
 )
 
 data class Damage(
