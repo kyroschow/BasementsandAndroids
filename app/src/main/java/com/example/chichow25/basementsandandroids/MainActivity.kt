@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.example.chichow25.basementsandandroids.gamedata.EquipmentCategory
+import com.example.chichow25.basementsandandroids.graphics.GameboardGLSurfaceView
 import kotlinx.coroutines.experimental.launch
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "Weapon: $weapon")
             }
         }
+        val gameboardGLView = GameboardGLSurfaceView(this)
+        setContentView(gameboardGLView)
     }
 
     fun EquipmentCategory.getEquipmentIndexes() : List<Int> = equipment.map {
