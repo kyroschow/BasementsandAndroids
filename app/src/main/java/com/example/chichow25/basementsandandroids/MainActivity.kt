@@ -9,6 +9,7 @@ import android.transition.TransitionManager
 import android.util.Log
 import android.view.WindowManager
 import com.example.chichow25.basementsandandroids.gamedata.EquipmentCategory
+import com.example.chichow25.basementsandandroids.graphics.GameboardGLSurfaceView
 import kotlinx.android.synthetic.main.activity_main_splash.*
 
 class MainActivity : AppCompatActivity() {
@@ -31,6 +32,9 @@ class MainActivity : AppCompatActivity() {
             TransitionManager.beginDelayedTransition(mainActivityLayout)
             constraintSet.applyTo(mainActivityLayout)
         }, 5000)
+
+        val gameboardGLView = GameboardGLSurfaceView(this)
+        setContentView(gameboardGLView)
     }
 
     fun EquipmentCategory.getEquipmentIndexes() = equipment.map { it.url.substringAfterLast('/').toInt() }
