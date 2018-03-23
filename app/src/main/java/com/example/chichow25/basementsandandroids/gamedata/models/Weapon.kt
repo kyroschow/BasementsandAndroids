@@ -18,7 +18,7 @@ data class Weapon(
 		val cost: Cost,
 		val damage: Damage,
 		val range: Range,
-		val weight: Int,
+		val weight: Double,
 		val properties: List<Property>,
 		val url: String
 )

@@ -1,19 +1,11 @@
 package com.example.chichow25.basementsandandroids
 
 import android.content.Context
-import android.content.res.Resources
+import com.example.chichow25.basementsandandroids.gamedata.EquipmentCategory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.IOException
-import java.nio.charset.Charset
 import kotlin.coroutines.experimental.suspendCoroutine
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.io.StringWriter
-import java.util.*
-import io.realm.SyncUser.fromJson
-import com.google.gson.GsonBuilder
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -26,7 +18,7 @@ suspend fun <T> Call<T>.await() = suspendCoroutine<T> { continuation ->
     enqueue(object : Callback<T> {
 
         override fun onFailure(call: Call<T>?, t: Throwable?) {
-            continuation.resumeWithException(Throwable("Retrofit Callback Failed", t))
+            continuation.resumeWithException(Throwable("Retrofit Callback Failed: ${t?.message}", t))
         }
 
         override fun onResponse(call: Call<T>?, response: Response<T>?) {
@@ -42,10 +34,9 @@ suspend fun <T> Call<T>.await() = suspendCoroutine<T> { continuation ->
     })
 }
 
-inline fun <reified T> loadJsonFromAssets(context: Context, filename: String): T {
+fun Context.loadEquipmentCategoriesList(): List<EquipmentCategory> {
 
-    val string = context.assets.open(filename).bufferedReader().use {
-        it.readText()
-    }
-    return Gson().fromJson(string, T::class.java)
+    val string = assets.open("equipment_list.json").bufferedReader().use { it.readText() }
+    val type = object : TypeToken<List<EquipmentCategory>>() {}.type
+    return Gson().fromJson(string, type)
 }

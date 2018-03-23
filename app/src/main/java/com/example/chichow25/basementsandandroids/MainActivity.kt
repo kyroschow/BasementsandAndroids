@@ -3,9 +3,13 @@ package com.example.chichow25.basementsandandroids
 import android.arch.lifecycle.ViewModelProviders
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.support.constraint.ConstraintSet
+import android.transition.TransitionManager
 import android.util.Log
+import android.view.WindowManager
 import com.example.chichow25.basementsandandroids.gamedata.EquipmentCategory
-import kotlinx.coroutines.experimental.launch
+import kotlinx.android.synthetic.main.activity_main_splash.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,28 +17,21 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main_splash)
+        window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        //test
+        //viewmodel
         val model = ViewModelProviders.of(this).get(BnaViewModel::class.java)
-        val categories = loadJsonFromAssets<List<EquipmentCategory>>(applicationContext, "equipment_list.json")
-//        Log.d(TAG, categories[0].getEquipmentIndexes().toString())
-        Log.d(TAG, categories[0].javaClass.name)
-        Log.d(TAG, categories[0].getEquipmentIndexes().javaClass.name)
+        //json data
+        val categories = applicationContext.loadEquipmentCategoriesList()
 
-
-        for (index in categories[0].getEquipmentIndexes()) {
-            //weapons
-            launch {
-                val weapon = model.getWeaponAt(index).await()
-                Log.d(TAG, "Weapon: $weapon")
-            }
-        }
+        Handler().postDelayed({
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(this@MainActivity, R.layout.activity_main_selector)
+            TransitionManager.beginDelayedTransition(mainActivityLayout)
+            constraintSet.applyTo(mainActivityLayout)
+        }, 5000)
     }
 
-    fun EquipmentCategory.getEquipmentIndexes() : List<Int> = equipment.map {
-        val string = it.url.substringAfterLast('/')
-        Log.d(TAG, string)
-        return@map string.toInt()
-    }
+    fun EquipmentCategory.getEquipmentIndexes() = equipment.map { it.url.substringAfterLast('/').toInt() }
 }
