@@ -1,7 +1,7 @@
-package com.example.chichow25.basementsandandroids.graphics.shapes
+package com.example.chichow25.basementsandandroids.presenter.graphics.shapes
 
 import android.opengl.GLES20
-import com.example.chichow25.basementsandandroids.graphics.GameboardRenderer
+import com.example.chichow25.basementsandandroids.presenter.graphics.GameboardRenderer
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer

@@ -1,4 +1,4 @@
-package com.example.chichow25.basementsandandroids.gamedata
+package com.example.chichow25.basementsandandroids.repo.gamedata
 
 /**
  * Created by chichow25 on 3/21/18.

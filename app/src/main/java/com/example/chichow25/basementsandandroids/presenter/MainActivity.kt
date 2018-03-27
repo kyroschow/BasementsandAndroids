@@ -7,11 +7,11 @@ import android.os.Handler
 import android.support.constraint.ConstraintSet
 import android.transition.TransitionManager
 import android.view.WindowManager
-import com.example.chichow25.basementsandandroids.model.BnaViewModel
+import com.example.chichow25.basementsandandroids.viewmodel.BnaViewModel
 import com.example.chichow25.basementsandandroids.R
-import com.example.chichow25.basementsandandroids.gamedata.EquipmentCategory
-import com.example.chichow25.basementsandandroids.graphics.GameboardGLSurfaceView
-import com.example.chichow25.basementsandandroids.loadEquipmentCategoriesList
+import com.example.chichow25.basementsandandroids.repo.gamedata.EquipmentCategory
+import com.example.chichow25.basementsandandroids.presenter.graphics.GameboardGLSurfaceView
+import com.example.chichow25.basementsandandroids.repo.util.loadEquipmentCategoriesList
 import kotlinx.android.synthetic.main.activity_main_splash.*
 
 class MainActivity : AppCompatActivity() {

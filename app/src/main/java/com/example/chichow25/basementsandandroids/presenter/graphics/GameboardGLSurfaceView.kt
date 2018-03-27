@@ -1,4 +1,4 @@
-package com.example.chichow25.basementsandandroids.graphics
+package com.example.chichow25.basementsandandroids.presenter.graphics
 
 import android.content.Context
 import android.opengl.GLSurfaceView

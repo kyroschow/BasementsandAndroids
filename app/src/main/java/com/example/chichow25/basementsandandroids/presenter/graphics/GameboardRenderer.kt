@@ -1,9 +1,9 @@
-package com.example.chichow25.basementsandandroids.graphics
+package com.example.chichow25.basementsandandroids.presenter.graphics
 
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
-import com.example.chichow25.basementsandandroids.graphics.shapes.Square
-import com.example.chichow25.basementsandandroids.graphics.shapes.Triangle
+import com.example.chichow25.basementsandandroids.presenter.graphics.shapes.Square
+import com.example.chichow25.basementsandandroids.presenter.graphics.shapes.Triangle
 import javax.microedition.khronos.egl.EGLConfig
 import javax.microedition.khronos.opengles.GL10
 

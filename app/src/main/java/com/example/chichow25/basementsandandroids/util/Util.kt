@@ -1,7 +1,7 @@
-package com.example.chichow25.basementsandandroids
+package com.example.chichow25.basementsandandroids.repo.util
 
 import android.content.Context
-import com.example.chichow25.basementsandandroids.gamedata.EquipmentCategory
+import com.example.chichow25.basementsandandroids.repo.gamedata.EquipmentCategory
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,7 +35,6 @@ suspend fun <T> Call<T>.await() = suspendCoroutine<T> { continuation ->
 }
 
 fun Context.loadEquipmentCategoriesList(): List<EquipmentCategory> {
-
     val string = assets.open("equipment_list.json").bufferedReader().use { it.readText() }
     val type = object : TypeToken<List<EquipmentCategory>>() {}.type
     return Gson().fromJson(string, type)
