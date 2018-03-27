@@ -1,4 +1,4 @@
-package com.example.chichow25.basementsandandroids.gamedata.models
+package com.example.chichow25.basementsandandroids.repo.retrofit.models
 
 import com.google.gson.annotations.SerializedName
 
@@ -11,7 +11,7 @@ data class Weapon(
 		val index: Int,
 		val name: String,
 		val equipment_category: String,
-        @SerializedName("weapon_category:")
+		@SerializedName("weapon_category:")
 		val weapon_category: String,
 		val weapon_range: String,
 		val category_range: String,

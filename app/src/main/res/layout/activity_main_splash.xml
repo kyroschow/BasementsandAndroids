@@ -5,7 +5,7 @@
     android:id="@+id/mainActivityLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.chichow25.basementsandandroids.MainActivity">
+    tools:context="com.example.chichow25.basementsandandroids.presenter.MainActivity">
 
     <ProgressBar
         android:id="@+id/loadingBar"

@@ -3,7 +3,7 @@ package com.example.chichow25.basementsandandroids.network
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import com.example.chichow25.basementsandandroids.MainActivity
+import com.example.chichow25.basementsandandroids.presenter.MainActivity
 
 /**
  * Created by per6 on 3/8/18.

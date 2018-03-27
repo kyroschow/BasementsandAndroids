@@ -1,4 +1,4 @@
-package com.example.chichow25.basementsandandroids.gamedata.models
+package com.example.chichow25.basementsandandroids.repo.retrofit.models
 
 /**
  * Created by chichow25 on 3/21/18.
