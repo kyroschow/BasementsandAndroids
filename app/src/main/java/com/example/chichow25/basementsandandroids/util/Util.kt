@@ -34,8 +34,11 @@ suspend fun <T> Call<T>.await() = suspendCoroutine<T> { continuation ->
     })
 }
 
-fun Context.loadEquipmentCategoriesList(): List<EquipmentCategory> {
+fun Context.loadEquipmentCategoriesFromAssets(): List<EquipmentCategory> {
     val string = assets.open("equipment_list.json").bufferedReader().use { it.readText() }
     val type = object : TypeToken<List<EquipmentCategory>>() {}.type
     return Gson().fromJson(string, type)
 }
+
+fun EquipmentCategory.getEquipmentIndexes()
+        = equipment.map { it.url.substringAfterLast('/').toInt() }
