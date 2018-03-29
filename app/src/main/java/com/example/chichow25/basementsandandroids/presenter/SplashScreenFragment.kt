@@ -10,10 +10,11 @@ import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.example.chichow25.basementsandandroids.R
 import com.example.chichow25.basementsandandroids.databinding.ActivityMainSplashBinding
-import com.example.chichow25.basementsandandroids.viewmodel.BnaViewModel
 import kotlinx.android.synthetic.main.activity_main_splash.*
+import kotlinx.android.synthetic.main.activity_main_splash.view.*
 
 /**
  * Created by chichow25 on 3/27/18.
@@ -34,8 +35,16 @@ class SplashScreenFragment : Fragment() {
         return binding.root
     }
 
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        //test load image into imageview
+        Glide.with(view)
+                .load("https://png.pngtree.com/thumb_back/fw800/back_pic/04/22/94/145833a51e31a1e.jpg")
+                .into(backgroundImageView)
+
+        //test for the constraint set animations
         Handler().postDelayed({
             val cs = ConstraintSet()
             cs.clone(context, R.layout.activity_main_selector)
