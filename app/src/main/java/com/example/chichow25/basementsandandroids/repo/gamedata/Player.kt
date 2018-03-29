@@ -9,5 +9,4 @@ class Player(var aClass : String,
              var level : Int,
              var armor : Int,
              var gold : Int,
-             var xp : Int) {
-}
+             var xp : Int) {}
