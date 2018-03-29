@@ -6,7 +6,7 @@ import android.arch.persistence.room.Query
 import com.example.chichow25.basementsandandroids.repo.Room.GameState
 
 @Dao
-interface WeatherDataDao {
+interface GameDataDao {
 
     @Query("SELECT * from gameState")
     fun getAll(): List<GameState>
