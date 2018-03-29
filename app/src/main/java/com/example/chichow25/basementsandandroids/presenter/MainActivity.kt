@@ -23,10 +23,10 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler {
     }
 
     override fun joinPlayer(v: View) {
-        Log.d(TAG, "join player")
+        //TODO: find games for player
     }
 
     override fun hostPlayer(v: View) {
-        Log.d(TAG, "host player")
+        //TODO: host a game as DM
     }
 }
