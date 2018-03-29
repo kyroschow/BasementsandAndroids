@@ -26,10 +26,11 @@ class SplashScreenFragment : Fragment() {
             try {
                 binding.handler = it as EventHandler
             } catch (e: ClassCastException) {
+                //activity must implement the interface to use the fragment
                 throw ClassCastException("Must implement ${EventHandler::class.java.name}")
             }
         }
-
+        //after bind, return the view inflated by bind
         return binding.root
     }
 

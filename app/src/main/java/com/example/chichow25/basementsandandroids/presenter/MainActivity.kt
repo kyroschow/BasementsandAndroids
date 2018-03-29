@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import com.example.chichow25.basementsandandroids.R
-import com.example.chichow25.basementsandandroids.Test1
 
 class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler {
 
