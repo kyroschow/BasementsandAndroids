@@ -17,7 +17,7 @@ data class GameState(@PrimaryKey(autoGenerate = true) var id: Long?,
                        @ColumnInfo(name = "enemyHealth") var enemyHealth: Int,
                        @ColumnInfo(name = "initiative") var initiative: Int,
                        @ColumnInfo(name = "map") var map: String,
-                       @Ignore @ColumnInfo(name = "setPieces") var cloud: String
+                       @Ignore @ColumnInfo(name = "setPieces") var pieces: String
 
 ){
     constructor():this(null,"",0,0,0,0,0,0,
