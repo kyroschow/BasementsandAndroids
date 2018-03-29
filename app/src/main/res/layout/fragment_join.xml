@@ -16,4 +16,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
-</LinearLayout><?xml version="1.0" encoding="utf-8"?>
+</LinearLayout>
