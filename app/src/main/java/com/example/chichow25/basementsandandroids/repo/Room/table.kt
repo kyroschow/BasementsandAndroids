@@ -6,7 +6,7 @@ import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 
 /**
- * Created by per6 on 3/29/18.
+ * Created by Ryan Liu on 3/29/18.
  */
 @Entity(tableName = "gameState")
 data class GameState(@PrimaryKey(autoGenerate = true) var id: Long?,

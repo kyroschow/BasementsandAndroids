@@ -5,6 +5,10 @@ import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import android.arch.persistence.room.Query
 import com.example.chichow25.basementsandandroids.repo.Room.GameState
 
+/**
+ * Created by Ryan Liu on 3/29/18.
+ */
+
 @Dao
 interface GameDataDao {
 
