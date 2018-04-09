@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
 import com.example.chichow25.basementsandandroids.R
+import io.realm.Realm
 
 class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, MainActivityView {
 
@@ -13,6 +14,8 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Mai
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //Initialize realm
+        Realm.init(this)
         //settings don't touch, for full screen
         window.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
