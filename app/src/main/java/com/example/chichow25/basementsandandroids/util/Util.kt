@@ -1,6 +1,9 @@
 package com.example.chichow25.basementsandandroids.repo.util
 
 import android.content.Context
+import android.net.wifi.p2p.WifiP2pConfig
+import android.net.wifi.p2p.WifiP2pManager
+import android.util.Log
 import com.example.chichow25.basementsandandroids.repo.gamedata.EquipmentCategory
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,3 +45,33 @@ fun Context.loadEquipmentCategoriesFromAssets(): List<EquipmentCategory> {
 
 fun EquipmentCategory.getEquipmentIndexes()
         = equipment.map { it.url.substringAfterLast('/').toInt() }
+
+suspend fun WifiP2pManager.isDiscoverPeersSuccessful(channel: WifiP2pManager.Channel) : Boolean = suspendCoroutine {
+    discoverPeers(channel, object : WifiP2pManager.ActionListener {
+
+        override fun onSuccess() {
+            it.resume(true)
+        }
+
+        override fun onFailure(reason: Int) {
+            Log.e("WifiP2pManager", "discover peers failed with reason code: $reason")
+            it.resume(false)
+        }
+
+    })
+}
+
+suspend fun WifiP2pManager.isConnectSuccessful(channel: WifiP2pManager.Channel, config: WifiP2pConfig) : Boolean = suspendCoroutine {
+    connect(channel, config, object : WifiP2pManager.ActionListener {
+
+        override fun onSuccess() {
+            it.resume(true)
+        }
+
+        override fun onFailure(reason: Int) {
+            Log.e("WifiP2pManager", "connect failed with reason code: $reason")
+            it.resume(false)
+        }
+
+    })
+}
