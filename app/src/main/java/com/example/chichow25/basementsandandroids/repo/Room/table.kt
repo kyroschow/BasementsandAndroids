@@ -6,7 +6,7 @@ import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 
 /**
- * Created by per6 on 3/29/18.
+ * Created by Ryan Liu on 3/29/18.
  */
 @Entity(tableName = "gameState")
 data class GameState(@PrimaryKey(autoGenerate = true) var id: Long?,
@@ -17,7 +17,7 @@ data class GameState(@PrimaryKey(autoGenerate = true) var id: Long?,
                        @ColumnInfo(name = "enemyHealth") var enemyHealth: Int,
                        @ColumnInfo(name = "initiative") var initiative: Int,
                        @ColumnInfo(name = "map") var map: String,
-                       @Ignore @ColumnInfo(name = "setPieces") var cloud: String
+                       @Ignore @ColumnInfo(name = "setPieces") var pieces: String
 
 ){
     constructor():this(null,"",0,0,0,0,0,0,
