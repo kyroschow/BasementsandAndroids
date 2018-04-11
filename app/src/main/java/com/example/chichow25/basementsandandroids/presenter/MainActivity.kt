@@ -7,7 +7,7 @@ import android.view.WindowManager
 import com.example.chichow25.basementsandandroids.R
 import io.realm.Realm
 
-class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler {
+class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, MainActivityView {
 
     private val TAG = "MainActivity"
 
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler {
         //replace fragments only when the activity is started
         if (savedInstanceState == null)
             supportFragmentManager.beginTransaction().replace(R.id.mainActivityContainer, SplashScreenFragment()).commit()
+        val presenter = MainActivityPresenter(this)
     }
 
     override fun joinPlayer(v: View) {
