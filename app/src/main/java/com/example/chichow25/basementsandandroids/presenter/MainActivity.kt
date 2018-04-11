@@ -1,15 +1,18 @@
 package com.example.chichow25.basementsandandroids.presenter
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.IntentFilter
 import android.net.wifi.p2p.WifiP2pDeviceList
 import android.net.wifi.p2p.WifiP2pManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import com.example.chichow25.basementsandandroids.R
 import com.example.chichow25.basementsandandroids.repo.network.GameReceiver
+import com.example.chichow25.basementsandandroids.viewmodel.GameStateViewModel
 import io.realm.Realm
 
 class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, WifiP2pManager.PeerListListener, MainActivityView {
@@ -39,6 +42,10 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Wif
         val manager = getSystemService(Context.WIFI_P2P_SERVICE) as WifiP2pManager
         val channel = manager.initialize(this, mainLooper, null)
         receiver = GameReceiver(manager, channel, this)
+
+        //game states from ViewModel
+        val gameStateViewModel = ViewModelProviders.of(this).get(GameStateViewModel::class.java)
+        Log.d(TAG, gameStateViewModel.gameStatesLiveData.toString())
     }
 
     override fun onResume() {
