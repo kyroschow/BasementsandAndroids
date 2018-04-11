@@ -5,7 +5,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import android.arch.persistence.room.Query
-import com.example.chichow25.basementsandandroids.repo.Room.GameState
+import io.reactivex.Flowable
 
 /**
  * Created by Ryan Liu on 3/29/18.
@@ -15,7 +15,7 @@ import com.example.chichow25.basementsandandroids.repo.Room.GameState
 interface GameDataDao {
 
     @Query("SELECT * from gameState")
-    fun getAll(): List<GameState>
+    fun getAll(): Flowable<List<GameState>>
 
     @Insert(onConflict = REPLACE)
     fun insert(GameState: GameState)
