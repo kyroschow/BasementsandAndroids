@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BasementsandAndroids.iml" filepath="$PROJECT_DIR$/BasementsandAndroids.iml" />
-      <module fileurl="file://C:\Users\ryanl\Desktop\BasementsandAndroids\BasementsandAndroids.iml" filepath="C:\Users\ryanl\Desktop\BasementsandAndroids\BasementsandAndroids.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/BasementsandAndroids.iml" filepath="$PROJECT_DIR$/.idea/BasementsandAndroids.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\ryanl\Desktop\BasementsandAndroids\app\app.iml" filepath="C:\Users\ryanl\Desktop\BasementsandAndroids\app\app.iml" />
     </modules>
   </component>
 </project>
