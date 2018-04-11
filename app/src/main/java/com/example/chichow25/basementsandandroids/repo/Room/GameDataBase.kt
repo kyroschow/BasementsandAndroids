@@ -15,16 +15,18 @@ abstract class GameDataBase : RoomDatabase() {
 
     companion object {
         private var INSTANCE: GameDataBase? = null
+        const val dbName = "game.db"
 
-        fun getInstance(context: Context): GameDataBase? {
+
+        fun getInstance(context: Context): GameDataBase {
             if (INSTANCE == null) {
                 synchronized(GameDataBase::class) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            GameDataBase::class.java, "game.db")
+                            GameDataBase::class.java, dbName)
                             .build()
                 }
             }
-            return INSTANCE
+            return INSTANCE!!
         }
 
         fun destroyInstance() {
