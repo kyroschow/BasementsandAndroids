@@ -1,5 +1,7 @@
 package com.example.chichow25.basementsandandroids.presenter
 
+import android.net.wifi.p2p.WifiP2pDeviceList
+import android.net.wifi.p2p.WifiP2pManager
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -7,7 +9,7 @@ import android.view.WindowManager
 import com.example.chichow25.basementsandandroids.R
 import io.realm.Realm
 
-class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, MainActivityView {
+class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, WifiP2pManager.PeerListListener, MainActivityView {
 
     private val TAG = "MainActivity"
 
@@ -31,5 +33,9 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Mai
 
     override fun hostPlayer(v: View) {
         //TODO: host a game as DM
+    }
+
+    override fun onPeersAvailable(peers: WifiP2pDeviceList?) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
