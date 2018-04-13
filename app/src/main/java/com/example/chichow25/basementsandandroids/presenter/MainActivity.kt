@@ -45,8 +45,9 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Wif
         receiver = GameReceiver(manager, channel, this)
 
         //game states from ViewModel
-        val test = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
-        val model = ViewModelProviders.of(this, test).get(GameStateViewModel::class.java)
+        //TODO: fix viewmodel
+        val factory = ViewModelProvider.AndroidViewModelFactory(application)
+        val gameStateViewModel = ViewModelProviders.of(this, factory).get(GameStateViewModel::class.java)
     }
 
     override fun onResume() {
