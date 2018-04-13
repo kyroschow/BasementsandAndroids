@@ -6,6 +6,7 @@ import com.example.chichow25.basementsandandroids.ui.base.view.MVPView
 /**
  * Created by per6 on 4/9/18.
  */
+/*
 abstract class BasePresenter<V: MVPView, I: MVPInteractor> internal constructor(protected var interactor: I?, protected val schedulerProvider: SchedulerProvider, protected val compositeDisposable: CompositeDisposable): MVPPresenter<V, I> {
     private var view: V? = null
     private val isViewAttached: Boolean get() = view != null
@@ -21,4 +22,4 @@ abstract class BasePresenter<V: MVPView, I: MVPInteractor> internal constructor(
         view = null
         interactor = null
     }
-}
+}*/

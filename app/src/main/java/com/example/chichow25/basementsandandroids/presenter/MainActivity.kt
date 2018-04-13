@@ -1,5 +1,6 @@
 package com.example.chichow25.basementsandandroids.presenter
 
+import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.IntentFilter
@@ -44,8 +45,8 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Wif
         receiver = GameReceiver(manager, channel, this)
 
         //game states from ViewModel
-        val gameStateViewModel = ViewModelProviders.of(this).get(GameStateViewModel::class.java)
-        Log.d(TAG, gameStateViewModel.gameStatesLiveData.toString())
+        val test = ViewModelProvider.AndroidViewModelFactory.getInstance(application)
+        val model = ViewModelProviders.of(this, test).get(GameStateViewModel::class.java)
     }
 
     override fun onResume() {

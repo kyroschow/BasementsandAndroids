@@ -1,10 +1,11 @@
-package com.example.chichow25.basementsandandroids.repo.util
+package com.example.chichow25.basementsandandroids.util
 
 import android.content.Context
 import android.net.wifi.p2p.WifiP2pConfig
 import android.net.wifi.p2p.WifiP2pManager
 import android.util.Log
 import com.example.chichow25.basementsandandroids.repo.gamedata.EquipmentCategory
+import com.example.chichow25.basementsandandroids.repo.gamedata.MonsterInfo
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,10 +44,17 @@ fun Context.loadEquipmentCategoriesFromAssets(): List<EquipmentCategory> {
     return Gson().fromJson(string, type)
 }
 
-fun EquipmentCategory.getEquipmentIndexes()
-        = equipment.map { it.url.substringAfterLast('/').toInt() }
+fun Context.loadMonsterInfosFromAssets() : List<MonsterInfo> {
+    val string = assets.open("monsters_list.json").bufferedReader().use { it.readText() }
+    val type = object : TypeToken<List<MonsterInfo>>() {}.type
+    return Gson().fromJson(string, type)
+}
 
-suspend fun WifiP2pManager.isDiscoverPeersSuccessful(channel: WifiP2pManager.Channel) : Boolean = suspendCoroutine {
+fun EquipmentCategory.getEquipmentIndexes() = equipment.map { it.url.substringAfterLast('/').toInt() }
+
+fun List<MonsterInfo>.getMonsterIndexes() = map { it.url.substringAfterLast('/').toInt() }
+
+suspend fun WifiP2pManager.isDiscoverPeersSuccessful(channel: WifiP2pManager.Channel): Boolean = suspendCoroutine {
     discoverPeers(channel, object : WifiP2pManager.ActionListener {
 
         override fun onSuccess() {
@@ -61,7 +69,7 @@ suspend fun WifiP2pManager.isDiscoverPeersSuccessful(channel: WifiP2pManager.Cha
     })
 }
 
-suspend fun WifiP2pManager.isConnectSuccessful(channel: WifiP2pManager.Channel, config: WifiP2pConfig) : Boolean = suspendCoroutine {
+suspend fun WifiP2pManager.isConnectSuccessful(channel: WifiP2pManager.Channel, config: WifiP2pConfig): Boolean = suspendCoroutine {
     connect(channel, config, object : WifiP2pManager.ActionListener {
 
         override fun onSuccess() {
