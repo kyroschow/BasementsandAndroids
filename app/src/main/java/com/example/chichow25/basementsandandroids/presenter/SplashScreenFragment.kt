@@ -23,12 +23,8 @@ class SplashScreenFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding = ActivityMainSplashBinding.inflate(inflater, container, false)
         activity?.let {
-            try {
-                binding.handler = it as EventHandler
-            } catch (e: ClassCastException) {
-                //activity must implement the interface to use the fragment
-                throw ClassCastException("Must implement ${EventHandler::class.java.name}")
-            }
+            require(activity is EventHandler) { "Must implement ${EventHandler::class.java.name}" }
+            binding.handler = it as EventHandler
         }
         //after bind, return the view inflated by bind
         return binding.root
@@ -49,7 +45,6 @@ class SplashScreenFragment : Fragment() {
             cs.clone(context, R.layout.activity_main_selector)
             TransitionManager.beginDelayedTransition(mainActivityLayout)
             cs.applyTo(mainActivityLayout)
-
         }, 5000)
     }
 
