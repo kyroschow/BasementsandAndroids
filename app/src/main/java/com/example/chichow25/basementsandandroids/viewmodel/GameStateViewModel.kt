@@ -32,10 +32,4 @@ class GameStateViewModel(app: Application) : AndroidViewModel(app) {
     fun deleteAllGameStates() = gameDataDao.deleteAll()
 
     fun updateGameState(gameState: GameState) = gameDataDao.update(gameState)
-
-    /*suspend fun getGameStatesAsync() = suspendCoroutine<LiveData<List<GameState>>> {
-        val gameStates = gameDataDao.getAll()
-        val liveData = MutableLiveData<List<GameState>>().apply { postValue(gameStates) }
-        it.resume(liveData)
-    }*/
 }
