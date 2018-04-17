@@ -1,7 +1,5 @@
 package com.example.chichow25.basementsandandroids.presenter
 
-import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.os.Handler
 import android.support.constraint.ConstraintSet

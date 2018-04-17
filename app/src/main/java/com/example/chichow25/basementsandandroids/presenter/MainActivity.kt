@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Mai
             supportFragmentManager.beginTransaction().replace(R.id.mainActivityContainer, SplashScreenFragment()).commit()
         val presenter = MainActivityPresenter(this)
 
-        //ViewModel
+        //ViewModels
         val factory = ViewModelProvider.AndroidViewModelFactory(application)
         val gameStateViewModel = ViewModelProviders.of(this, factory).get(GameStateViewModel::class.java)
         val dndApiViewModel = ViewModelProviders.of(this, factory).get(DndApiViewModel::class.java)
