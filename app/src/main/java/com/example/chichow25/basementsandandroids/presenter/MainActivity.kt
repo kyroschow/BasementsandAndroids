@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Wif
         val factory = ViewModelProvider.AndroidViewModelFactory(application)
         val gameStateViewModel = ViewModelProviders.of(this, factory).get(GameStateViewModel::class.java)
         val dndApiViewModel = ViewModelProviders.of(this, factory).get(DndApiViewModel::class.java)
+        gameStateViewModel.gameStateLiveData
     }
 
     override fun onResume() {

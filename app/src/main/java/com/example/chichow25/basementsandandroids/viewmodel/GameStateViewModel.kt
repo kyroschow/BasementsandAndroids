@@ -7,6 +7,7 @@ import android.arch.lifecycle.MutableLiveData
 import com.example.chichow25.basementsandandroids.repo.Room.GameDataBase
 import com.example.chichow25.basementsandandroids.repo.Room.GameDataDao
 import com.example.chichow25.basementsandandroids.repo.Room.GameState
+import kotlinx.coroutines.experimental.launch
 import kotlin.coroutines.experimental.suspendCoroutine
 
 /**
@@ -16,6 +17,13 @@ class GameStateViewModel(app: Application) : AndroidViewModel(app) {
 
     //Room database
     private val gameDataDao: GameDataDao = GameDataBase.getInstance(app).gameDataDao()
+    val gameStateLiveData: LiveData<List<GameState>> by lazy {
+        val data = MutableLiveData<List<GameState>>().apply { value = listOf() }
+        launch {
+            data.postValue(gameDataDao.getAll())
+        }
+        data
+    }
 
     fun saveGameStateToDataBase(vararg gameStates: GameState) = gameDataDao.insert(*gameStates)
 
@@ -25,9 +33,9 @@ class GameStateViewModel(app: Application) : AndroidViewModel(app) {
 
     fun updateGameState(gameState: GameState) = gameDataDao.update(gameState)
 
-    suspend fun getGameStatesAsync() = suspendCoroutine<LiveData<List<GameState>>> {
+    /*suspend fun getGameStatesAsync() = suspendCoroutine<LiveData<List<GameState>>> {
         val gameStates = gameDataDao.getAll()
         val liveData = MutableLiveData<List<GameState>>().apply { postValue(gameStates) }
         it.resume(liveData)
-    }
+    }*/
 }
