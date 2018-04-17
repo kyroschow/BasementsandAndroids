@@ -1,4 +1,4 @@
-package com.example.chichow25.basementsandandroids.repo.Room
+package com.example.chichow25.basementsandandroids.repo.room
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
@@ -8,7 +8,7 @@ import android.content.Context
 /**
  * Created by Ryan Liu on 4/9/18.
  */
-@Database(entities = arrayOf(GameState::class), version = 1)
+@Database(entities = [(GameState::class)], version = 1)
 abstract class GameDataBase : RoomDatabase() {
 
     abstract fun gameDataDao(): GameDataDao
