@@ -13,8 +13,10 @@ import android.view.View
 import android.view.WindowManager
 import com.example.chichow25.basementsandandroids.R
 import com.example.chichow25.basementsandandroids.repo.network.GameReceiver
+import com.example.chichow25.basementsandandroids.viewmodel.DndApiViewModel
 import com.example.chichow25.basementsandandroids.viewmodel.GameStateViewModel
 import io.realm.Realm
+import kotlinx.coroutines.experimental.launch
 
 class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, WifiP2pManager.PeerListListener, MainActivityView {
 
@@ -48,6 +50,7 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Wif
         //TODO: fix viewmodel
         val factory = ViewModelProvider.AndroidViewModelFactory(application)
         val gameStateViewModel = ViewModelProviders.of(this, factory).get(GameStateViewModel::class.java)
+        val dndApiViewModel = ViewModelProviders.of(this, factory).get(DndApiViewModel::class.java)
     }
 
     override fun onResume() {
