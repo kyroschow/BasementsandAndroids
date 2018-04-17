@@ -25,5 +25,5 @@ interface DndApi {
     fun getArmourAt(@Path("index") index: Int): Call<Armor>
 
     @GET("monsters/{index}")
-    fun getMonstersAt(@Path("index") index: Int): Call<Monster>
+    fun getMonsterAt(@Path("index") index: Int): Call<Monster>
 }

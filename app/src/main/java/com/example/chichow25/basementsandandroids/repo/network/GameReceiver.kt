@@ -9,7 +9,7 @@ import com.example.chichow25.basementsandandroids.presenter.MainActivity
 /**
  * Created by per6 on 3/8/18.
  */
-class GameReceiver(private val manager : WifiP2pManager, private val channel: WifiP2pManager.Channel, private val mainActivity: MainActivity) : BroadcastReceiver() {
+class GameReceiver(private val manager : WifiP2pManager, private val channel: WifiP2pManager.Channel, private val peerListListener: WifiP2pManager.PeerListListener) : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         val action = intent?.action
@@ -27,7 +27,7 @@ class GameReceiver(private val manager : WifiP2pManager, private val channel: Wi
             }
             WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION -> {
                 // Call WifiP2pManager.requestPeers() to get a list of current peers
-                manager.requestPeers(channel, mainActivity)
+                manager.requestPeers(channel, peerListListener)
 
             }
             WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION -> {

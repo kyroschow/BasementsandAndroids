@@ -4,11 +4,10 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import com.example.chichow25.basementsandandroids.repo.Room.GameDataBase
-import com.example.chichow25.basementsandandroids.repo.Room.GameDataDao
 import com.example.chichow25.basementsandandroids.repo.Room.GameState
+import com.example.chichow25.basementsandandroids.repo.room.GameDataBase
+import com.example.chichow25.basementsandandroids.repo.room.GameDataDao
 import kotlinx.coroutines.experimental.launch
-import kotlin.coroutines.experimental.suspendCoroutine
 
 /**
  * Created by chichow25 on 3/19/18.

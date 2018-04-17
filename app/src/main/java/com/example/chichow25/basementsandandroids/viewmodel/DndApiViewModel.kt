@@ -29,6 +29,6 @@ class DndApiViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     suspend fun getMonstersAsync() : List<Monster> = monsterInfoList.getMonsterIndexes().map {
-        dndApi.getMonstersAt(it).await()
+        dndApi.getMonsterAt(it).await()
     }
 }
