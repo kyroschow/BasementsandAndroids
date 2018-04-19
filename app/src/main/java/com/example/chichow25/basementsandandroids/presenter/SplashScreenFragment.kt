@@ -48,8 +48,8 @@ class SplashScreenFragment : Fragment() {
 
     interface EventHandler {
 
-        fun joinPlayer(v : View);
+        fun joinPlayer(v: View)
 
-        fun hostPlayer(v : View);
+        fun hostPlayer(v: View)
     }
 }
