@@ -1,19 +1,15 @@
 package com.example.chichow25.basementsandandroids.presenter
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import com.example.chichow25.basementsandandroids.R
-import com.example.chichow25.basementsandandroids.repo.room.GameState
 import com.example.chichow25.basementsandandroids.viewmodel.DndApiViewModel
 import com.example.chichow25.basementsandandroids.viewmodel.GameStateViewModel
 import com.example.chichow25.basementsandandroids.viewmodel.NetworkViewModel
-import kotlinx.coroutines.experimental.launch
 
 class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, MainActivityView {
 
@@ -35,12 +31,6 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Mai
         val gameStateViewModel = ViewModelProviders.of(this, factory).get(GameStateViewModel::class.java)
         val dndApiViewModel = ViewModelProviders.of(this, factory).get(DndApiViewModel::class.java)
         val networkViewModel = ViewModelProviders.of(this, factory).get(NetworkViewModel::class.java)
-
-        launch {
-            dndApiViewModel.getWeaponsAsync().let {
-                Log.d(TAG, it.toString())
-            }
-        }
     }
 
     override fun joinPlayer(v: View) {

@@ -3,6 +3,8 @@ package com.example.chichow25.basementsandandroids.util
 import android.content.Context
 import android.net.wifi.p2p.WifiP2pConfig
 import android.net.wifi.p2p.WifiP2pManager
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
 import android.util.Log
 import com.example.chichow25.basementsandandroids.repo.gamedata.EquipmentCategory
 import com.example.chichow25.basementsandandroids.repo.gamedata.MonsterInfo
@@ -84,6 +86,5 @@ suspend fun WifiP2pManager.isConnectSuccessful(channel: WifiP2pManager.Channel, 
             Log.e("WifiP2pManager", "connect failed with reason code: $reason")
             it.resume(false)
         }
-
     })
 }
