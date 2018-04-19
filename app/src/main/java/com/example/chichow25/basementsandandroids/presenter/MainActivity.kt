@@ -1,6 +1,5 @@
 package com.example.chichow25.basementsandandroids.presenter
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -9,7 +8,6 @@ import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import com.example.chichow25.basementsandandroids.R
-import com.example.chichow25.basementsandandroids.repo.room.GameState
 import com.example.chichow25.basementsandandroids.viewmodel.DndApiViewModel
 import com.example.chichow25.basementsandandroids.viewmodel.GameStateViewModel
 import com.example.chichow25.basementsandandroids.viewmodel.NetworkViewModel
