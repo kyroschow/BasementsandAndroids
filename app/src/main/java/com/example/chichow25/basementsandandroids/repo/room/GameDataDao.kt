@@ -14,7 +14,7 @@ interface GameDataDao {
 
     @Query("SELECT * from gameState")
     fun getAll(): LiveData<List<GameState>>
-
+    
     @Insert(onConflict = REPLACE)
     fun insert(vararg gameStates: GameState)
 

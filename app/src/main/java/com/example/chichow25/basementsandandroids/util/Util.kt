@@ -12,6 +12,8 @@ import retrofit2.Response
 import kotlin.coroutines.experimental.suspendCoroutine
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 
 
 /**
@@ -31,6 +33,13 @@ suspend fun <T> Call<T>.await() = suspendCoroutine<T> { continuation ->
             } ?: continuation.resumeWithException(IllegalStateException("Response body is null"))
         }
     })
+}
+
+suspend fun <T> Observable<T>.await() = suspendCoroutine<T> { continuation ->
+    observeOn(AndroidSchedulers.mainThread())
+    subscribe {
+        continuation.resume(it)
+    }
 }
 
 fun Context.loadEquipmentCategoriesFromAssets(): List<EquipmentCategory> {

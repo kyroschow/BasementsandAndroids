@@ -3,7 +3,7 @@ package com.example.chichow25.basementsandandroids.repo.retrofit
 import com.example.chichow25.basementsandandroids.repo.gamedata.Monster
 import com.example.chichow25.basementsandandroids.repo.retrofit.models.Armor
 import com.example.chichow25.basementsandandroids.repo.retrofit.models.Weapon
-import retrofit2.Call
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -17,11 +17,11 @@ interface DndApi {
     }
 
     @GET("equipment/{index}")
-    fun getWeaponAt(@Path("index") index: Int): Call<Weapon>
+    fun getWeaponAt(@Path("index") index: Int): Observable<Weapon>
 
     @GET("equipment/{index}")
-    fun getArmourAt(@Path("index") index: Int): Call<Armor>
+    fun getArmourAt(@Path("index") index: Int): Observable<Armor>
 
     @GET("monsters/{index}")
-    fun getMonsterAt(@Path("index") index: Int): Call<Monster>
+    fun getMonsterAt(@Path("index") index: Int): Observable<Monster>
 }

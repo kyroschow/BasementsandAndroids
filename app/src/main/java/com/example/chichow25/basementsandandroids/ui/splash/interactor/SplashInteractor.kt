@@ -19,7 +19,7 @@ class SplashInteractor @Inject constructor(private val mContext: Context, privat
 
     override fun provideWeapon(index: Int): Observable<Weapon> = apiHelper.getWeaponAt(index)
 
-    override fun provideMonster(index: Int): Observable<Monster> = apiHelper.getMonstersAt(index)
+    override fun provideMonster(index: Int): Observable<Monster> = apiHelper.getMonsterAt(index)
 
     override fun getGameState(): Observable<List<GameState>> {
         return gameStateRepoHelper.loadGameStates()

@@ -8,6 +8,7 @@ import com.example.chichow25.basementsandandroids.repo.retrofit.models.Armor
 import com.example.chichow25.basementsandandroids.repo.retrofit.models.Weapon
 import com.example.chichow25.basementsandandroids.util.*
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class DndApiViewModel(application: Application) : AndroidViewModel(application) {
@@ -15,6 +16,7 @@ class DndApiViewModel(application: Application) : AndroidViewModel(application) 
     private val dndApi = Retrofit.Builder()
             .baseUrl(DndApi.baseURL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
             .create(DndApi::class.java)
     val equipmentList = application.loadEquipmentCategoriesFromAssets()

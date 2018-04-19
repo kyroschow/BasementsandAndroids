@@ -4,7 +4,6 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import com.example.chichow25.basementsandandroids.repo.Room.GameState
 
 /**
  * Created by Ryan Liu on 4/9/18.
