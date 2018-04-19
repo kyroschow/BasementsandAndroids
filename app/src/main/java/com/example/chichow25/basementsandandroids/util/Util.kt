@@ -26,15 +26,10 @@ suspend fun <T> Call<T>.await() = suspendCoroutine<T> { continuation ->
         }
 
         override fun onResponse(call: Call<T>?, response: Response<T>?) {
-            if (response?.body() != null) {
-                response.body()?.let {
-                    continuation.resume(it)
-                }
-            } else {
-                continuation.resumeWithException(IllegalStateException("Response body is null"))
-            }
+            response?.body()?.also {
+                continuation.resume(it)
+            } ?: continuation.resumeWithException(IllegalStateException("Response body is null"))
         }
-
     })
 }
 

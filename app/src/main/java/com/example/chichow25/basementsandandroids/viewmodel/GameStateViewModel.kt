@@ -16,13 +16,7 @@ class GameStateViewModel(app: Application) : AndroidViewModel(app) {
 
     //Room database
     private val gameDataDao: GameDataDao = GameDataBase.getInstance(app).gameDataDao()
-    val gameStateLiveData: LiveData<List<GameState>> by lazy {
-        val data = MutableLiveData<List<GameState>>().apply { value = listOf() }
-        launch {
-            data.postValue(gameDataDao.getAll())
-        }
-        data
-    }
+    val gameStateLiveData: LiveData<List<GameState>> = gameDataDao.getAll()
 
     fun saveGameStateToDataBase(vararg gameStates: GameState) = gameDataDao.insert(*gameStates)
 

@@ -1,9 +1,9 @@
 package com.example.chichow25.basementsandandroids.repo.room
 
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
-import com.example.chichow25.basementsandandroids.repo.Room.GameState
 
 /**
  * Created by Ryan Liu on 3/29/18.
@@ -13,7 +13,7 @@ import com.example.chichow25.basementsandandroids.repo.Room.GameState
 interface GameDataDao {
 
     @Query("SELECT * from gameState")
-    fun getAll(): List<GameState>
+    fun getAll(): LiveData<List<GameState>>
 
     @Insert(onConflict = REPLACE)
     fun insert(vararg gameStates: GameState)
