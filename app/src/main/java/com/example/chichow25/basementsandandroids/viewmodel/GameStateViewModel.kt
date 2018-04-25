@@ -4,6 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
 import android.database.Cursor
+import com.example.chichow25.basementsandandroids.repo.network.SQLConverterHelper
 import com.example.chichow25.basementsandandroids.repo.room.GameDataBase
 import com.example.chichow25.basementsandandroids.repo.room.GameDataDao
 import com.example.chichow25.basementsandandroids.repo.room.GameState
@@ -29,4 +30,6 @@ class GameStateViewModel(app: Application) : AndroidViewModel(app) {
     fun deleteAllGameStates() = gameDataDao.deleteAll()
 
     fun updateGameState(gameState: GameState) = gameDataDao.update(gameState)
+
+    fun convertCursor() = launch { SQLConverterHelper.convert(cursorData) }
 }

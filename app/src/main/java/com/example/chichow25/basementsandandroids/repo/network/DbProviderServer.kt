@@ -9,7 +9,7 @@ import java.io.FileNotFoundException
  * Created by testaccount on 4/24/18.
  */
 class DbProviderServer(port: Int, val context: Context): NanoHTTPD(port){
-    override fun serve(uri: String, method: Method, header: Map<String,String>, parameters: Map<String,String>,files: Map<String,String>): Response {
+    override fun serve(uri: String, method: Method, header: Map<String,String>, parameters: Map<String,String>, files: Map<String,String>): Response {
         val answer: String = ""
         var fis: FileInputStream? = null
         try{
@@ -19,6 +19,6 @@ class DbProviderServer(port: Int, val context: Context): NanoHTTPD(port){
         catch(e: FileNotFoundException){
             e.printStackTrace()
         }
-        //return NanoHTTPD.Response(Response.Status.OK, "application/json", fis) weird init stuff here
+        return newChunkedResponse(Response.Status.OK, "application/json", fis)
     }
 }
