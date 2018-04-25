@@ -29,7 +29,7 @@ class StubProvider: ContentProvider() {
         return true
     }
 
-    override fun getType(uri: Uri?): String {
-
+    override fun getType(uri: Uri?): String? {
+        return null
     }
 }
