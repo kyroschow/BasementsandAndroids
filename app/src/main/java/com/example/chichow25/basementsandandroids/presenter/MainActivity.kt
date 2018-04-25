@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Mai
     }
 
     override fun hostPlayer(v: View) {
-        //TODO: host a game as DM
 
     }
 }

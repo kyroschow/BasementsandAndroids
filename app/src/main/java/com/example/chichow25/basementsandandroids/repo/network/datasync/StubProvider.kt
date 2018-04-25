@@ -30,6 +30,6 @@ class StubProvider: ContentProvider() {
     }
 
     override fun getType(uri: Uri?): String? {
-        return null;
+        return null
     }
 }
