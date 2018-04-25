@@ -11,7 +11,10 @@ import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.example.chichow25.basementsandandroids.R
 import com.example.chichow25.basementsandandroids.databinding.ActivityMainSplashBinding
+import com.example.chichow25.basementsandandroids.repo.room.GameDataBase
+import com.example.chichow25.basementsandandroids.util.convert
 import kotlinx.android.synthetic.main.activity_main_splash.*
+import kotlinx.coroutines.experimental.launch
 
 /**
  * Created by chichow25 on 3/27/18.
@@ -44,6 +47,8 @@ class SplashScreenFragment : Fragment() {
             TransitionManager.beginDelayedTransition(mainActivityLayout)
             cs.applyTo(mainActivityLayout)
         }, 5000)
+        val gameDataDao = GameDataBase.getInstance(this.context!!).gameDataDao()
+        launch{gameDataDao.getCursor().convert()}
     }
 
     interface EventHandler {
