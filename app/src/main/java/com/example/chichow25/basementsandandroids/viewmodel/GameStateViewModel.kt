@@ -3,10 +3,10 @@ package com.example.chichow25.basementsandandroids.viewmodel
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import com.example.chichow25.basementsandandroids.repo.room.GameState
+import android.database.Cursor
 import com.example.chichow25.basementsandandroids.repo.room.GameDataBase
 import com.example.chichow25.basementsandandroids.repo.room.GameDataDao
+import com.example.chichow25.basementsandandroids.repo.room.GameState
 import kotlinx.coroutines.experimental.launch
 
 /**
@@ -17,6 +17,8 @@ class GameStateViewModel(app: Application) : AndroidViewModel(app) {
     //Room database
     private val gameDataDao: GameDataDao = GameDataBase.getInstance(app).gameDataDao()
     val gameStateLiveData: LiveData<List<GameState>> = gameDataDao.getAll()
+
+    val cursorData: Cursor = gameDataDao.getCursor()
 
     fun saveGameStateToDataBase(vararg gameStates: GameState) = launch {
         gameDataDao.insert(*gameStates)
