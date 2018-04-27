@@ -13,7 +13,7 @@ import retrofit2.http.Path
 interface DndApi {
 
     companion object {
-        val baseURL = "http://dnd5eapi.co/api/"
+        const val baseURL = "http://dnd5eapi.co/api/"
     }
 
     @GET("equipment/{index}")
