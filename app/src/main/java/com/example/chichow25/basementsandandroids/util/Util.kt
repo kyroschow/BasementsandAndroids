@@ -1,11 +1,14 @@
 package com.example.chichow25.basementsandandroids.util
 
 import android.content.Context
+import android.databinding.BindingAdapter
 import android.net.wifi.p2p.WifiP2pConfig
 import android.net.wifi.p2p.WifiP2pManager
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
+import android.support.v7.widget.AppCompatImageView
 import android.util.Log
+import com.bumptech.glide.Glide
 import com.example.chichow25.basementsandandroids.repo.gamedata.EquipmentCategory
 import com.example.chichow25.basementsandandroids.repo.gamedata.MonsterInfo
 import retrofit2.Call

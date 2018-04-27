@@ -17,7 +17,6 @@ abstract class GameDataBase : RoomDatabase() {
         private var INSTANCE: GameDataBase? = null
         const val dbName = "game.db"
 
-
         fun getInstance(context: Context): GameDataBase {
             if (INSTANCE == null) {
                 synchronized(GameDataBase::class) {
