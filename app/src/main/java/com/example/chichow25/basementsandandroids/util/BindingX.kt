@@ -2,6 +2,7 @@ package com.example.chichow25.basementsandandroids.util
 
 import android.databinding.BindingAdapter
 import android.support.v7.widget.AppCompatImageView
+import android.util.Log
 import com.bumptech.glide.Glide
 
 @BindingAdapter("android:src")
