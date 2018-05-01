@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="name"
-            type="String"/>
+            name="hostInfo"
+            type="com.example.chichow25.basementsandandroids.HostScreenRecyclerViewAdapter.HostInfo"/>
         <variable
             name="position"
             type="Integer"/>
@@ -38,7 +38,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/barrier5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@{iconSrc}" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -47,7 +47,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@{name}"
+                android:text="@{hostInfo.name}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 app:barrierDirection="bottom"
                 app:constraint_referenced_ids="button7,button6,appCompatImageView"
-                tools:layout_editor_absoluteY="823dp" />
+                tools:layout_editor_absoluteY="823dp"/>
 
         </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.CardView>
