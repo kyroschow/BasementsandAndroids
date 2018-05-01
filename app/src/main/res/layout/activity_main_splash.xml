@@ -7,6 +7,7 @@
         <variable
             name="handler"
             type="com.example.chichow25.basementsandandroids.presenter.SplashScreenFragment.EventHandler"/>
+        <import type="com.example.chichow25.basementsandandroids.presenter.SplashScreenFragment.EventHandler"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -24,7 +25,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:alpha="0.5" />
+            tools:alpha="0.5"
+            android:src="@{EventHandler.backgroundImageSrc}"/>
 
         <ProgressBar
             android:id="@+id/loadingBar"

@@ -35,11 +35,6 @@ class SplashScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        //test load image into imageview
-        Glide.with(view)
-                .load("https://png.pngtree.com/thumb_back/fw800/back_pic/04/22/94/145833a51e31a1e.jpg")
-                .into(backgroundImageView)
-
         //test for the constraint set animations
         Handler().postDelayed({
             val cs = ConstraintSet()
@@ -52,6 +47,10 @@ class SplashScreenFragment : Fragment() {
     }
 
     interface EventHandler {
+
+        companion object {
+            const val backgroundImageSrc = "https://png.pngtree.com/thumb_back/fw800/back_pic/04/22/94/145833a51e31a1e.jpg"
+        }
 
         fun joinPlayer(v: View)
 

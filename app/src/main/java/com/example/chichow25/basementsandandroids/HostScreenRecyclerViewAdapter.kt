@@ -39,5 +39,5 @@ class HostScreenRecyclerViewAdapter(private val hostInfoList: List<HostInfo>): R
 
     class Holder(val binding: HostItemBinding): RecyclerView.ViewHolder(binding.root)
 
-    data class HostInfo(val name: String, val imageSrc: String)
+    data class HostInfo(val name: String, val iconSrc: String)
 }
