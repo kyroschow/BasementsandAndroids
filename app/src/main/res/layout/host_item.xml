@@ -59,13 +59,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/Mordred"
+                android:onClick="@{(view) -> adapter.onRemoveClick(view, position)}"
                 android:text="Remove"
                 app:layout_constraintEnd_toStartOf="@+id/button7"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:backgroundTint="@android:color/holo_red_light"
-                android:onClick="@{(view) -> adapter.onRemoveClick(view, position)}"/>
+                tools:backgroundTint="@android:color/holo_red_light" />
 
             <Button
                 android:id="@+id/button7"
@@ -73,13 +74,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/Mordred"
+                android:onClick="@{(view) -> adapter.onAcceptClick(view, position)}"
                 android:text="Accept"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/button6"
                 app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:backgroundTint="@android:color/holo_green_light"
-                android:onClick="@{(view) -> adapter.onAcceptClick(view, position)}"/>
+                tools:backgroundTint="@android:color/holo_green_light" />
 
             <android.support.constraint.Barrier
                 android:id="@+id/barrier5"
