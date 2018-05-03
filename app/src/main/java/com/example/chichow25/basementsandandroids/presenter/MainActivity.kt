@@ -12,6 +12,7 @@ import com.example.chichow25.basementsandandroids.repo.network.DbProviderServer
 import com.example.chichow25.basementsandandroids.viewmodel.DndApiViewModel
 import com.example.chichow25.basementsandandroids.viewmodel.GameStateViewModel
 import com.example.chichow25.basementsandandroids.viewmodel.NetworkViewModel
+import kotlinx.coroutines.experimental.launch
 
 class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, MainActivityView {
 
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity(), SplashScreenFragment.EventHandler, Mai
         val dndApiViewModel = ViewModelProviders.of(this, factory).get(DndApiViewModel::class.java)
         val networkViewModel = ViewModelProviders.of(this, factory).get(NetworkViewModel::class.java)
         DbProviderServer(8080,this).start()
+        launch { gameStateViewModel.convertCursor() }
         Log.w(TAG, "Server started")
     }
 

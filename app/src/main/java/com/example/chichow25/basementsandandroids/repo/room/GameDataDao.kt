@@ -7,8 +7,9 @@ import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Query
 import android.arch.persistence.room.Update
 import android.content.Intent
-import android.database.Cursor
+import android.util.Log
 import com.example.chichow25.basementsandandroids.presenter.MainActivity
+import com.example.chichow25.basementsandandroids.util.convert
 
 /**
  * Created by Ryan Liu on 3/29/18.
@@ -40,8 +41,11 @@ abstract class GameDataDao {
     @Query("SELECT * from gameState")
     abstract fun getAll(): LiveData<List<GameState>>
 
-    @Query("SELECT * from gameState")
-    abstract fun getCursor(): Cursor
+    suspend fun convertCursor() {
+        val databaseStorage = DatabaseStorage.gameDatabase
+        databaseStorage.query(null,null).convert()
+        Log.d("GameDataDao", "DB converted")
+    }
 
     fun insert(gameState: GameState){
         val sqlRequest = "INSERT INTO gameState(playerPositionX, playerPositionY, enemyPositionX, enemyPositionY, playerHealth, enemyHealth, initiative, map, pieces) " +

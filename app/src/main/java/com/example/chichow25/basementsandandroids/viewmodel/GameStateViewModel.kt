@@ -17,8 +17,8 @@ class GameStateViewModel(app: Application) : AndroidViewModel(app) {
     private val gameDataDao: GameDataDao = GameDataBase.getInstance(app).gameDataDao()
     val gameStateLiveData: LiveData<List<GameState>> = gameDataDao.getAll()
 
-    fun saveGameStateToDataBase(vararg gameStates: GameState) = launch {
-        gameDataDao.insert(*gameStates)
+    fun saveGameStateToDataBase(gameStates: GameState) = launch {
+        gameDataDao.insert(gameStates)
     }
 
     fun deleteGameStateFromDataBase(vararg gameStates: GameState) = gameDataDao.delete(*gameStates)
@@ -26,4 +26,6 @@ class GameStateViewModel(app: Application) : AndroidViewModel(app) {
     fun deleteAllGameStates() = gameDataDao.deleteAll()
 
     fun updateGameState(gameState: GameState) = gameDataDao.update(gameState)
+
+    suspend fun convertCursor() = gameDataDao.convertCursor()
 }

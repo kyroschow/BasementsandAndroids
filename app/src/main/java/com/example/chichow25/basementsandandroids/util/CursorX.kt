@@ -38,5 +38,6 @@ fun Cursor.convert(){
         this.close()
         Log.d(TAG, resultSet.toString())
         output.write(resultSet.toString())
+        Log.wtf(TAG, resultSet.toString())
     }
 }

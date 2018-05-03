@@ -15,7 +15,7 @@ abstract class GameDataBase : RoomDatabase() {
 
     companion object {
         private var INSTANCE: GameDataBase? = null
-        const val dbName = "game.db"
+        const val dbName = "gameState.db"
 
         fun getInstance(context: Context): GameDataBase {
             if (INSTANCE == null) {
