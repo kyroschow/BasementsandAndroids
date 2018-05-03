@@ -43,7 +43,7 @@ class SplashScreenFragment : Fragment() {
             cs.applyTo(mainActivityLayout)
         }, 5000)
         val gameDataDao = GameDataBase.getInstance(this.context!!).gameDataDao()
-        launch{gameDataDao.getCursor().convert()}
+        //launch{gameDataDao.getCursor().convert()}
     }
 
     interface EventHandler {

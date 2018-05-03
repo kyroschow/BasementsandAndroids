@@ -41,7 +41,13 @@
             <meta-data
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator"/>
-        </service>i
+        </service>
+        <receiver android:name=".repo.room.DatabaseChangedReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.example.chichow25.basementsandandroids.DATABASE_CHANGED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
