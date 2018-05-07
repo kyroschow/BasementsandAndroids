@@ -68,9 +68,15 @@ dependencies {
     implementation 'io.github.libktx:ktx-log:1.9.8-b2'
     implementation 'io.github.libktx:ktx-math:1.9.8-b2'
     implementation 'io.github.libktx:ktx-style:1.9.8-b2'
-    implementation 'io.github.libktx:ktx-vis:1.9.8-b2'
-    implementation 'io.github.libktx:ktx-vis-style:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-scene2d:1.9.8-b2'
     implementation "com.badlogicgames.gdx:gdx:1.9.8"
+    implementation 'com.badlogicgames.gdx:gdx-backend-android:1.9.8'
+    implementation "com.badlogicgames.gdx:gdx-freetype:1.9.8"
+    implementation "com.badlogicgames.gdx:gdx-platform:1.9.8:natives-armeabi"
+    implementation "com.badlogicgames.gdx:gdx-platform:1.9.8:natives-armeabi-v7a"
+    implementation "com.badlogicgames.gdx:gdx-platform:1.9.8:natives-arm64-v8a"
+    implementation "com.badlogicgames.gdx:gdx-platform:1.9.8:natives-x86"
+    implementation "com.badlogicgames.gdx:gdx-platform:1.9.8:natives-x86_64"
 }
 
 kotlin {
