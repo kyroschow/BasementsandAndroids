@@ -56,6 +56,21 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
     implementation 'org.nanohttpd:nanohttpd:2.3.1'
+    implementation 'io.github.libktx:ktx-actors:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-app:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-ashley:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-assets:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-async:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-collections:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-freetype-async:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-i18n:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-inject:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-log:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-math:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-style:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-vis:1.9.8-b2'
+    implementation 'io.github.libktx:ktx-vis-style:1.9.8-b2'
+    implementation "com.badlogicgames.gdx:gdx:1.9.8"
 }
 
 kotlin {
