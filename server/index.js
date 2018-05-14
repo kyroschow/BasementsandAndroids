@@ -6,7 +6,7 @@ server.listen(8080, function() {
     console.log("Server is now running...");
 });
 
-io.on('connection', function() {
+io.on('connection', function(socket) {
     console.log("Player connected!");
     socket.on('disconnect', function() {
         console.log("Player disconnected");

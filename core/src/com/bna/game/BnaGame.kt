@@ -22,7 +22,7 @@ class BnaGame : ApplicationAdapter() {
         //multiplayer
         gdxLog("create()")
         try {
-            socket = IO.socket("http://localhost:8080")
+            socket = IO.socket("http://10.100.139.103:8080")
             socket.connect()
         } catch (e: Exception) {
             gdxLog(e.message, e, "BnaGame")
