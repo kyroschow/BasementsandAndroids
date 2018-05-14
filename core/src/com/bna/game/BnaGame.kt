@@ -5,14 +5,28 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import io.socket.client.IO
+import io.socket.client.Socket
 
 class BnaGame : ApplicationAdapter() {
     private var batch: SpriteBatch? = null
     private var img: Texture? = null
 
+    //multiplayer
+    private lateinit var socket: Socket
+
     override fun create() {
         batch = SpriteBatch()
         img = Texture("badlogic.jpg")
+
+        //multiplayer
+        gdxLog("create()")
+        try {
+            socket = IO.socket("http://localhost:8080")
+            socket.connect()
+        } catch (e: Exception) {
+            gdxLog(e.message, e, "BnaGame")
+        }
     }
 
     override fun render() {
