@@ -25,7 +25,7 @@ class BnaGame : ApplicationAdapter() {
             socket = IO.socket("http://10.100.139.103:8080")
             socket.connect()
         } catch (e: Exception) {
-            gdxLog(e.message, e, "BnaGame")
+            gdxLog(e.message, e)
         }
     }
 
