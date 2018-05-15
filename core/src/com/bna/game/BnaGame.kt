@@ -26,14 +26,6 @@ class BnaGame : KtxGame<Screen>() {
         }
         batch = SpriteBatch()
         img = Texture("badlogic.jpg")
-        //multiplayer
-        gdxLog("create()")
-        try {
-            socket = IO.socket("http://10.100.139.103:8080")
-            socket.connect()
-        } catch (e: Exception) {
-            gdxLog(e.message, e)
-        }
     }
 
     override fun render() {
