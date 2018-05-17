@@ -26,7 +26,6 @@ class NetworkHelper(val url: String, val port: Short) {
 
     fun disconnect() {
         try {
-
             socket.disconnect()
         } catch (e: Exception) {
             gdxLog(e.message, e)
