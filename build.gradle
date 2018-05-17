@@ -44,6 +44,9 @@ allprojects {
 
 project(":android") {
     apply plugin: "android"
+    apply plugin: 'kotlin-android'
+    apply plugin: 'kotlin-android-extensions'
+
 
     configurations { natives }
 
@@ -61,7 +64,6 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
-        
     }
 }
 
@@ -128,6 +130,7 @@ tasks.eclipse.doLast {
 }
 repositories {
     mavenCentral()
+    google()
 }
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_js_version"
