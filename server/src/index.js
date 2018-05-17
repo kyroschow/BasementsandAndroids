@@ -18,9 +18,9 @@ io.on('connection', function(socket) {
     });
 });
 
-function host(id, gameState) {
+function host(id, jsonGameState) {
     this.id = id;
-    this.state = gameState;
+    this.state = jsonGameState;
 }
 
 function player (id) {
