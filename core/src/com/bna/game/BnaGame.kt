@@ -57,6 +57,7 @@ class BnaGame : KtxGame<Screen>() {
                     borderColor = Color.GRAY
                     size = 50*/ //TODO:we can decide this later
                 }))
+        add("mord")
         label {
             font = skin[defaultStyle]
         }
