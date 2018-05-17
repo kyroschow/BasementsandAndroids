@@ -46,6 +46,8 @@ class BnaGame : KtxGame<Screen>() {
         }
         batch = SpriteBatch()
         img = Texture("badlogic.jpg")
+
+
     }
 
     fun createSkin(atlas: TextureAtlas): Skin = skin(atlas) { skin ->
