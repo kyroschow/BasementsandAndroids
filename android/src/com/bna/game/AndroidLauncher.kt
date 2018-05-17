@@ -11,5 +11,6 @@ class AndroidLauncher : AndroidApplication() {
         super.onCreate(savedInstanceState)
         val config = AndroidApplicationConfiguration()
         initialize(BnaGame(), config)
+        //?
     }
 }
