@@ -1,6 +1,5 @@
 package com.bna.game
 
-import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.GL20
@@ -57,15 +56,20 @@ class BnaGame : KtxGame<Screen>() {
                     borderColor = Color.GRAY
                     size = 50*/ //TODO:we can decide this later
                 }))
-        add("mord")
+        add("mordred", FreeTypeFontGenerator("mordred_bold.ttf".toInternalFile())
+                .generateFont(FreeTypeFontGenerator.FreeTypeFontParameter().apply {
+                    /*borderWidth = 2f
+                    borderColor = Color.GRAY
+                    size = 50*/ //TODO:we can decide this later
+                }))
         label {
             font = skin[defaultStyle]
         }
         label("barbarian") {
             font = skin["barbarian"]
         }
-        textButton("barbarian") {
-            /*font = skin["barbarian"]
+        textButton("mordred") {
+            /*font = skin["mordred"]
             overFontColor = Color.GRAY
             downFontColor = Color.DARK_GRAY*/ //TODO:decide later
         }
