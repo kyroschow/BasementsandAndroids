@@ -39,6 +39,7 @@ allprojects {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url "https://maven.google.com" }
     }
 }
 
@@ -112,6 +113,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "io.github.libktx:ktx-style:1.9.8-b2"
         compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5"
+        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0-alpha1"
     }
 }
 
