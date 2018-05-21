@@ -2,6 +2,7 @@ package com.bna.game
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
+import com.badlogic.gdx.ScreenAdapter
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Batch
@@ -11,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
+import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import com.badlogic.gdx.utils.viewport.Viewport
 import io.socket.client.Socket
@@ -26,6 +28,8 @@ import com.ownedoutcomes.view.Menu*/ //TODO: make this work
 class BnaGame : KtxGame<Screen>() {
     private var batch: SpriteBatch? = null
     private var img: Texture? = null
+
+    var stage : Stage? = null //GameUI stuff
 
     //multiplayer
     private lateinit var socket: Socket
@@ -95,5 +99,15 @@ class BnaGame : KtxGame<Screen>() {
     override fun dispose() {
         batch?.dispose()
         img?.dispose()
+    }
+
+    class GameUI(val skin: Skin) : ScreenAdapter(){
+        var stage : Stage? = null
+
+        fun createUI(){
+            var table : Table = Table(skin)
+
+        }
+
     }
 }

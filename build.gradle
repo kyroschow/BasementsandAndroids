@@ -47,6 +47,7 @@ project(":android") {
     apply plugin: "android"
     apply plugin: 'kotlin-android'
     apply plugin: 'kotlin-android-extensions'
+    apply plugin: 'kotlin-kapt'
 
 
     configurations { natives }
@@ -66,6 +67,7 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
     }
+
 }
 
 project(":ios") {
@@ -92,10 +94,6 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-bullet:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
-        compile "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers-android:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         compile "io.socket:socket.io-client:1.0.0"
         compile "io.github.libktx:ktx-log:1.9.8-b2"
@@ -105,12 +103,10 @@ project(":core") {
         compile "io.github.libktx:ktx-inject:1.9.8-b2"
         compile "io.github.libktx:ktx-app:1.9.8-b2"
         compile "io.github.libktx:ktx-math:1.9.8-b2"
-        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "io.github.libktx:ktx-assets:1.9.8-b2"
         compile "io.github.libktx:ktx-i18n:1.9.8-b2"
         compile "io.github.libktx:ktx-actors:1.9.8-b2"
         compile "io.github.libktx:ktx-collections:1.9.8-b2"
-        compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "io.github.libktx:ktx-style:1.9.8-b2"
         compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5"
         implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0-alpha1"
