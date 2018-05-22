@@ -10,9 +10,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.Stage
-import com.badlogic.gdx.scenes.scene2d.ui.Skin
-import com.badlogic.gdx.scenes.scene2d.ui.Table
+import com.badlogic.gdx.scenes.scene2d.ui.*
+import com.badlogic.gdx.scenes.scene2d.ui.List
+import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop
+import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop.Payload
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import com.badlogic.gdx.utils.viewport.Viewport
 import io.socket.client.Socket
@@ -22,6 +25,8 @@ import ktx.async.enableKtxCoroutines
 import ktx.inject.Context
 import ktx.scene2d.Scene2DSkin
 import ktx.style.*
+
+
 /*import com.ownedoutcomes.view.Game
 import com.ownedoutcomes.view.Menu*/ //TODO: make this work
 
@@ -101,12 +106,59 @@ class BnaGame : KtxGame<Screen>() {
         img?.dispose()
     }
 
-    class GameUI(val skin: Skin) : ScreenAdapter(){
-        var stage : Stage? = null
+    class GameUI(var skin: Skin) : ScreenAdapter(){
+        var stage = Stage()
 
         fun createUI(){
-            var table : Table = Table(skin)
+            var table = Table(skin)
+            var tableSection = VerticalGroup()
+            var gridSection = VerticalGroup()
+            var hContainer = HorizontalGroup()
+            val iconList = getIcons()
 
+            table.setFillParent(true)
+            table.defaults()
+            table.add("Icons").row()
+            table.add(iconList).expand().fill()
+
+            var dragdrop = DragAndDrop()
+            dragdrop.addSource(object : DragAndDrop.Source(iconList) {
+                internal val payload = Payload()
+                override fun dragStart(event: InputEvent, x: Float, y: Float, pointer: Int): Payload {
+                    val item = iconList.getSelected()
+                    payload.`object` = item
+                    iconList.getItems().removeIndex(iconList.getSelectedIndex())/*
+                    payload.dragActor = Label(item, skin)
+                    payload.invalidDragActor = Label(item + " (\"No thanks!\")", skin)
+                    payload.validDragActor = Label(item + " (\"I'll buy this!\")", skin)*/
+                    return payload
+                }
+
+                fun dragStop(event: InputEvent, x: Float, y: Float, pointer: Int, payload: Payload, target: Target?) {
+                    if (target == null)
+                        iconList.getItems().add(payload.`object` as Image)
+                }
+            })
+            /*dragdrop.addTarget(object : Target(sell) {
+                fun drag(source: DragAndDrop.Source, payload: Payload, x: Float, y: Float, pointer: Int): Boolean {
+                    return "Cucumber" != payload.`object`
+                }
+
+                fun drop(source: DragAndDrop.Source, payload: Payload, x: Float, y: Float, pointer: Int) {
+                    sell.getItems().add(payload.`object` as String)
+                }
+            })*/
+
+
+
+            hContainer.children.add(tableSection,gridSection)
+            stage.addActor(hContainer)
+        }
+
+        private fun getIcons(): List<Image> {
+            //TODO: Find some way to get images and return as a list
+            var list : List<Image> = List(skin)
+            return list
         }
 
     }
