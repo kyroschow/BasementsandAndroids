@@ -43,7 +43,7 @@ class BnaGame : KtxGame<Screen>() {
     override fun create() {
         enableKtxCoroutines(asynchronousExecutorConcurrencyLevel = 1)
         context.register {
-            bindSingleton(TextureAtlas("skin.atlas"))
+            bindSingleton(TextureAtlas(Gdx.files.internal("unnamed.atlas")))
             bindSingleton<Batch>(SpriteBatch())
             bindSingleton<Viewport>(ScreenViewport())
             bindSingleton(Stage(inject(), inject()))
