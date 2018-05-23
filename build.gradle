@@ -93,7 +93,6 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         compile "io.socket:socket.io-client:1.0.0"
         compile "io.github.libktx:ktx-log:1.9.8-b2"
@@ -110,16 +109,6 @@ project(":core") {
         compile "io.github.libktx:ktx-style:1.9.8-b2"
         compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5"
         implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0-alpha1"
-    }
-}
-
-project(":server") {
-    apply plugin: "java"
-
-    dependencies {
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        compile "io.socket:socket.io-client:1.0.0"
     }
 }
 
