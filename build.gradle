@@ -113,16 +113,6 @@ project(":core") {
     }
 }
 
-project(":server") {
-    apply plugin: "java"
-
-    dependencies {
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        compile "io.socket:socket.io-client:1.0.0"
-    }
-}
-
 tasks.eclipse.doLast {
     delete ".project"
 }
