@@ -50,7 +50,7 @@ class NetworkHelper(val url: String, val port: Short, val isHost: Boolean) {
             val data = it[0] as JSONObject
             try {
                 val id = data.getString("id")
-                gdxLog("New Player Joined: $id")
+                gdxLog("New PlayerModel Joined: $id")
             } catch (e: JSONException) {
                 gdxLog(e.message, e)
             }
