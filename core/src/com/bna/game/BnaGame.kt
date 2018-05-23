@@ -123,18 +123,18 @@ class BnaGame : KtxGame<Screen>() {
 
             var dragdrop = DragAndDrop()
             dragdrop.addSource(object : DragAndDrop.Source(iconList) {
-                internal val payload = Payload()
+                val payload = Payload()
                 override fun dragStart(event: InputEvent, x: Float, y: Float, pointer: Int): Payload {
                     val item = iconList.getSelected()
-                    payload.`object` = item
-                    iconList.getItems().removeIndex(iconList.getSelectedIndex())/*
-                    payload.dragActor = Label(item, skin)
-                    payload.invalidDragActor = Label(item + " (\"No thanks!\")", skin)
-                    payload.validDragActor = Label(item + " (\"I'll buy this!\")", skin)*/
+                    payload.setObject(item)
+                    iconList.getItems().removeIndex(iconList.getSelectedIndex())
+                    payload.setDragActor(iconList.selected)
+                    /*payload.invalidDragActor =
+                    payload.validDragActor = */ //TODO: DO AFTER GRID IS MADE
                     return payload
                 }
 
-                fun dragStop(event: InputEvent, x: Float, y: Float, pointer: Int, payload: Payload, target: Target?) {
+                override fun dragStop(event: InputEvent, x: Float, y: Float, pointer: Int, payload: Payload, target: DragAndDrop.Target) {
                     if (target == null)
                         iconList.getItems().add(payload.`object` as Image)
                 }
@@ -147,7 +147,7 @@ class BnaGame : KtxGame<Screen>() {
                 fun drop(source: DragAndDrop.Source, payload: Payload, x: Float, y: Float, pointer: Int) {
                     sell.getItems().add(payload.`object` as String)
                 }
-            })*/
+            })*/ //TODO: Later
 
 
 
