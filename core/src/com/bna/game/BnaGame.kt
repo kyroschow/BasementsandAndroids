@@ -110,10 +110,10 @@ class BnaGame : KtxGame<Screen>() {
         var stage = Stage()
 
         fun createUI(){
-            var table = Table(skin)
-            var tableSection = VerticalGroup()
-            var gridSection = VerticalGroup()
-            var hContainer = HorizontalGroup()
+            val table = Table(skin)
+            val tableSection = VerticalGroup()
+            val gridSection = VerticalGroup()
+            val hContainer = HorizontalGroup()
             val iconList = getIcons()
 
             table.setFillParent(true)
@@ -121,7 +121,7 @@ class BnaGame : KtxGame<Screen>() {
             table.add("Icons").row()
             table.add(iconList).expand().fill()
 
-            var dragdrop = DragAndDrop()
+            val dragdrop = DragAndDrop()
             dragdrop.addSource(object : DragAndDrop.Source(iconList) {
                 val payload = Payload()
                 override fun dragStart(event: InputEvent, x: Float, y: Float, pointer: Int): Payload {
@@ -157,7 +157,7 @@ class BnaGame : KtxGame<Screen>() {
 
         private fun getIcons(): List<Image> {
             //TODO: Find some way to get images and return as a list
-            var list : List<Image> = List(skin)
+            val list : List<Image> = List(skin)
             return list
         }
 

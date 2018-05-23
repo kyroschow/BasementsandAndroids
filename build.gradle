@@ -93,7 +93,8 @@ project(":core") {
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        compile "com.badlogicgames.box2dlights:box2dlights:1.4"
         compile "io.socket:socket.io-client:1.0.0"
         compile "io.github.libktx:ktx-log:1.9.8-b2"
         compile "io.github.libktx:ktx-scene2d:1.9.8-b2"
