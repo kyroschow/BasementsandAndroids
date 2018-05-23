@@ -66,6 +66,12 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
+        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi"
+        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
+        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
+        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
+        natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
     }
 
 }
@@ -82,7 +88,8 @@ project(":ios") {
         compile "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
         compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-ios"
-        
+        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-ios"
+
     }
 }
 
@@ -91,11 +98,12 @@ project(":core") {
 
 
     dependencies {
+        compile "io.socket:socket.io-client:1.0.0"
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
+        compile "org.jetbrains.kotlin:kotlin-stdlib:1.2.41"
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "com.badlogicgames.box2dlights:box2dlights:1.4"
-        compile "io.socket:socket.io-client:1.0.0"
         compile "io.github.libktx:ktx-log:1.9.8-b2"
         compile "io.github.libktx:ktx-scene2d:1.9.8-b2"
         compile "io.github.libktx:ktx-async:1.9.8-b2"
@@ -108,6 +116,7 @@ project(":core") {
         compile "io.github.libktx:ktx-actors:1.9.8-b2"
         compile "io.github.libktx:ktx-collections:1.9.8-b2"
         compile "io.github.libktx:ktx-style:1.9.8-b2"
+
         compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5"
         implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0-alpha1"
     }
