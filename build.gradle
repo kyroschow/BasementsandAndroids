@@ -117,8 +117,10 @@ project(":core") {
         compile "io.github.libktx:ktx-collections:1.9.8-b2"
         compile "io.github.libktx:ktx-style:1.9.8-b2"
 
+        //dependencies other than libgdx
+        //DO NOT put android dependencices here
         compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5"
-        implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0-alpha1"
+        implementation 'com.beust:klaxon:3.0.1'
     }
 }
 

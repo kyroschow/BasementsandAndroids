@@ -1,3 +1,9 @@
 package com.bna.game.model
 
-data class EnemyModel(var x: Int, var y: Int, var health: Int, var initiative: Int)
+class EnemyModel(x: Int, y: Int, health: Int, initiative: Int): PropertyAwareObject() {
+
+    var x by observableProperty(x)
+    var y by observableProperty(y)
+    var health by observableProperty(health)
+    var initiative by observableProperty(initiative)
+}

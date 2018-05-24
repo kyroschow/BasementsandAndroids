@@ -1,3 +1,9 @@
 package com.bna.game.model
 
-data class PlayerModel(var _x: Int, var _y: Int, var health: Int, var initiative: Int)
+class PlayerModel(x: Int, y: Int, health: Int, initiative: Int): PropertyAwareObject() {
+
+    var x by observableProperty(x)
+    var y by observableProperty(y)
+    var health by observableProperty(health)
+    var initiative by observableProperty(initiative)
+}

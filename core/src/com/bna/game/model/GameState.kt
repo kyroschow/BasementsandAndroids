@@ -1,24 +1,26 @@
 package com.bna.game.model
 
-import kotlin.properties.Delegates
+import kotlin.reflect.KProperty
 
-data class GameState(private val _players: Array<PlayerModel>,
-                     private val _enemies: Array<EnemyModel>) {
+class GameState(players: Array<PlayerModel>, enemies: Array<EnemyModel>) : PropertyAwareObject(), PropertyAwareListener {
     //empty constructor for db
     constructor() : this(emptyArray(), emptyArray())
 
-    var players by observableVar("players", _players)
-    var enemies by observableVar("enemies", _enemies)
+    var players by observableProperty(players)
+    var enemies by observableProperty(enemies)
 
-    private var callback: ((Pair<String, Any>) -> Unit)? = null
-
-    fun observe(callback: (Pair<String, Any>) -> Unit) {
-        this.callback = callback
+    override fun onPropertyChange(vararg infos: PropertyChangeInfo) = infos.forEach { info ->
+        when (info.parent) {
+            is PlayerModel -> listeners.forEach { it.onPropertyChange(info) }
+            is EnemyModel -> listeners.forEach { it.onPropertyChange(info) }
+        }
     }
 
-    private fun <T> observableVar(name: String, initialValue: T) = Delegates.observable(initialValue) {
-        _, _, new ->
-        //TODO: notify game state changed
-        callback?.invoke(name to new as Any)
+    override fun changeHandler(prop: KProperty<*>, old: Any, new: Any) {
+        when (prop.name) {
+            "players" -> players.forEach { it.addPropertyChangeListener(this) }
+            "enemies" -> enemies.forEach { it.addPropertyChangeListener(this) }
+        }
+        super.changeHandler(prop, old, new)
     }
 }
