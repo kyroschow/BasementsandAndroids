@@ -70,21 +70,21 @@ open class Enemy(
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override public fun touchDown(screenX : Int, screenY : Int): Boolean {
+    override fun touchDown(screenX : Int, screenY : Int): Boolean {
         if (screenX == enemyX && screenY == enemyY)
             return true
         return false
     }
 
-    public fun inspect() {
+    fun inspect() {
 
     }
 
-    public fun rollInitiative(): Int {
+    fun rollInitiative(): Int {
         return random.nextInt(1 - 20) + 20
     }
 
-    public fun engage() {
+    fun engage() {
         if (touchDown())
     }
 
