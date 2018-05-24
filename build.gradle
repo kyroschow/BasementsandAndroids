@@ -120,7 +120,6 @@ project(":core") {
         //dependencies other than libgdx
         //DO NOT put android dependencices here
         compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.22.5"
-        implementation 'com.beust:klaxon:3.0.1'
     }
 }
 
