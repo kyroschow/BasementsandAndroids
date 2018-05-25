@@ -42,5 +42,3 @@ inline fun <T : PropertyAwareObject> T.applyCumulativeChanges(change: T.() -> Un
 interface PropertyAwareListener {
     fun onPropertyChange(propertyAwareObject: PropertyAwareObject)
 }
-
-data class PropertyChangeInfo(val parent: Any, val varName: String, val old: Any, val new: Any)
