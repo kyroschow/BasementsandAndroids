@@ -1,5 +1,4 @@
 buildscript {
-    ext.kotlin_js_version = '1.2.10'
     ext.kotlin_version = '1.2.41'
 
 
@@ -18,7 +17,6 @@ buildscript {
 
     }
 }
-apply plugin: 'kotlin2js'
 
 allprojects {
     apply plugin: "eclipse"
@@ -130,7 +128,4 @@ tasks.eclipse.doLast {
 repositories {
     mavenCentral()
     google()
-}
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_js_version"
 }
