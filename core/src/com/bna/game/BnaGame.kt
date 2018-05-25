@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import com.badlogic.gdx.utils.viewport.Viewport
 import com.bna.game.view.GameUI
+import com.bna.game.view.Menu
 import io.socket.client.Socket
 import ktx.app.KtxGame
 import ktx.assets.toInternalFile
@@ -22,15 +23,9 @@ import ktx.inject.Context
 import ktx.scene2d.Scene2DSkin
 import ktx.style.*
 
-
-/*import com.ownedoutcomes.view.Game
-import com.ownedoutcomes.view.Menu*/ //TODO: make this work
-
 class BnaGame : KtxGame<Screen>() {
     private var batch: SpriteBatch? = null
     private var img: Texture? = null
-
-    var stage : Stage? = null //GameUI stuff
 
     //multiplayer
     private lateinit var socket: Socket
@@ -46,13 +41,14 @@ class BnaGame : KtxGame<Screen>() {
             bindSingleton(createSkin(inject()))
             Scene2DSkin.defaultSkin = inject()
             bindSingleton(this@BnaGame)
-            //bindSingleton(Menu(inject(), inject()))   //TODO: incorrect imports
-            bindSingleton(GameUI(inject()))
+            bindSingleton(Menu(inject(), inject()))
+            bindSingleton(GameUI(inject(),inject(),inject()))
         }
         batch = SpriteBatch()
         img = Texture("badlogic.jpg")
-        /*val game = GameUI(Scene2DSkin.defaultSkin)
-        game.createUI()*/
+        addScreen(context.inject<Menu>())
+        //addScreen(context.inject<GameUI>())
+        setScreen<Menu>()
 
     }
 

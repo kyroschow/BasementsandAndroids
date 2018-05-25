@@ -3,7 +3,6 @@ package com.bna.game.view
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.Sprite
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.*
@@ -11,10 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.List
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop
 import ktx.app.KtxScreen
 
-class GameUI(var skin: Skin) : KtxScreen {
-    var stage = Stage()
+class GameUI(val skin: Skin,val stage : Stage, val batch: Batch) : KtxScreen {
 
-    fun createUI(){
+    override fun show(){
         val table = Table(skin)
         val tableSection = VerticalGroup()
         val gridSection = VerticalGroup()
@@ -26,7 +24,6 @@ class GameUI(var skin: Skin) : KtxScreen {
         var squareHeight : Float = tableSection.height / 20
         square.regionWidth = squareWidth.toInt()
         square.regionHeight = squareHeight.toInt()
-        val batch : Batch = SpriteBatch()
         batch.begin()
         for (y in 0 until 20) {
             for (x in 0 until 20) {
@@ -79,7 +76,7 @@ class GameUI(var skin: Skin) : KtxScreen {
 
     private fun getIcons(): List<Image> {
         //TODO: Find some way to get images and return as a list
-        val list : List<Image> = List(skin)
+        val list : com.badlogic.gdx.scenes.scene2d.ui.List<Image> = List<Image>(skin)
         return list
     }
 
