@@ -1,4 +1,4 @@
-package com.bna.game.logic
+package com.bna.game.view.logic
 
 /**
  * Created by per6 on 5/17/18.

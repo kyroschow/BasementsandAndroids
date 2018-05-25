@@ -1,8 +1,8 @@
-package com.bna.game.actor
+package com.bna.game.view.actor
 
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.Label
-import com.bna.game.logic.TokenItem
+import com.bna.game.view.logic.TokenItem
 import kotlinx.coroutines.experimental.Job
 import ktx.scene2d.image
 import ktx.scene2d.label

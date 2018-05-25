@@ -1,4 +1,4 @@
-package com.bna.game.actor
+package com.bna.game.view.actor
 
 class Player(var aClass : String,
              var race : String,
