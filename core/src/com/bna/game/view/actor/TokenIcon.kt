@@ -17,6 +17,6 @@ class TokenIcon(val utility: Boolean, var currentToken: TokenItem){
     val job: Job? = null
     val actor = table {
         icon = image(currentToken.name)
-        label = label("", style = "decorative")
+        label = label("", style = "barbarian")
     }
 }
