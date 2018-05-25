@@ -1,22 +1,21 @@
 package com.bna.game.model
 
+import com.beust.klaxon.Json
 import kotlin.properties.Delegates
 import kotlin.reflect.KProperty
 
 abstract class PropertyAwareObject {
-    //list of listeners
-    val listeners by lazy{ mutableListOf<PropertyAwareListener>() }
-    //stores property changes until they are fired
-    val cumulativePropertyInfos by lazy { mutableListOf<PropertyChangeInfo>() }
-    //change this to enable/disable instant notification of updates
+    @Json(ignored = true) //list of listeners
+    val listeners by lazy { mutableListOf<PropertyAwareListener>() }
+    @Json(ignored = true) //change this to enable/disable instant notification of updates
     var instantUpdate = true
 
     fun addPropertyChangeListener(l: PropertyAwareListener) = listeners.add(l)
 
-    inline fun addPropertyChangeListener(crossinline l: (Array<out PropertyChangeInfo>) -> Unit): PropertyAwareListener {
-        val listener = object: PropertyAwareListener {
-            override fun onPropertyChange(vararg infos: PropertyChangeInfo) {
-                l(infos)
+    inline fun addPropertyChangeListener(crossinline l: (PropertyAwareObject) -> Unit): PropertyAwareListener {
+        val listener = object : PropertyAwareListener {
+            override fun onPropertyChange(propertyAwareObject: PropertyAwareObject) {
+                l(propertyAwareObject)
             }
 
         }
@@ -25,33 +24,23 @@ abstract class PropertyAwareObject {
     }
 
     protected open fun changeHandler(prop: KProperty<*>, old: Any, new: Any) {
-        if (instantUpdate) { //fires property changes instantly, property by property
-            listeners.forEach {
-                val info = PropertyChangeInfo(this, prop.name, old, new)
-                it.onPropertyChange(info)
-            }
-        } else { //fires a list of property changes, >1 properties at the same time
-            cumulativePropertyInfos.add(PropertyChangeInfo(this, prop.name, old, new))
-        }
+        if (instantUpdate) listeners.forEach { it.onPropertyChange(this) }
     }
 
     fun removePropertyChangeListener(l: PropertyAwareListener) = listeners.remove(l)
 
-    protected inline fun <T: Any> observableProperty(initialValue: T, crossinline handler: (KProperty<*>, T, T) -> Unit = ::changeHandler)
-            = Delegates.observable(initialValue, handler)
+    protected inline fun <T : Any> observableProperty(initialValue: T, crossinline handler: (KProperty<*>, T, T) -> Unit = ::changeHandler) = Delegates.observable(initialValue, handler)
 }
 
-inline fun <T: PropertyAwareObject> T.applyCumulativeChanges(change: T.() -> Unit) {
+inline fun <T : PropertyAwareObject> T.applyCumulativeChanges(change: T.() -> Unit) {
     instantUpdate = false //disable instance updates
     apply(change)
-    //fire cumulative property changes
-    listeners.forEach{ it.onPropertyChange(*cumulativePropertyInfos.toTypedArray()) }
-    cumulativePropertyInfos.clear()
+    listeners.forEach { it.onPropertyChange(this) } //emit all changes together
     instantUpdate = true //re-enable instant updates
 }
 
 interface PropertyAwareListener {
-    fun onPropertyChange(vararg infos: PropertyChangeInfo)
+    fun onPropertyChange(propertyAwareObject: PropertyAwareObject)
 }
 
 data class PropertyChangeInfo(val parent: Any, val varName: String, val old: Any, val new: Any)

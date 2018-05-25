@@ -1,17 +1,20 @@
-package com.bna.game
+package com.bna.game.network
 
+import com.beust.klaxon.Klaxon
+import com.bna.game.gdxLog
+import com.bna.game.model.GameState
 import io.socket.client.IO
 import io.socket.client.Socket
 import org.json.JSONException
 import org.json.JSONObject
+import kotlin.properties.Delegates
 
-class NetworkHelper(val url: String, val port: Short, val isHost: Boolean) {
+open class NetworkHelper(var url: String, var port: Short) {
 
     private lateinit var id: String
-
-    private val socket: Socket by lazy {
-        IO.socket("$url:$port")
-    }
+    protected var socket: Socket by Delegates.observable(IO.socket("$url:$port")) { _, old, _ -> old.disconnect() }
+    protected val klaxon = Klaxon()
+    protected val parser = klaxon.parser()
 
     init {
         require(port in 2000..9999) { "invalid port" }
@@ -25,6 +28,11 @@ class NetworkHelper(val url: String, val port: Short, val isHost: Boolean) {
         }
     }
 
+    fun reconnect() {
+        socket = IO.socket("$url:$port")
+        connect()
+    }
+
     fun disconnect() {
         try {
             socket.disconnect()
@@ -33,7 +41,17 @@ class NetworkHelper(val url: String, val port: Short, val isHost: Boolean) {
         }
     }
 
-    fun configSocketEvents(): Unit = with(socket) {
+    fun emitUpdatedGameState(gameState: GameState) {
+        val jsonString = klaxon.toJsonString(gameState)
+        gdxLog("JsonString: $jsonString")
+        try {
+            socket.emit("UpdateGameStateToServer", jsonString)
+        } catch (e: Exception) {
+            gdxLog("Cannot update GameState to server", e)
+        }
+    }
+
+    open fun configSocketEvents(): Unit = with(socket) {
         on(Socket.EVENT_CONNECT) {
             gdxLog("Connected!")
         }

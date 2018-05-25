@@ -6,21 +6,22 @@ class GameState(players: Array<PlayerModel>, enemies: Array<EnemyModel>) : Prope
     //empty constructor for db
     constructor() : this(emptyArray(), emptyArray())
 
-    var players by observableProperty(players)
+    var players by observableProperty(players, ::playersHandler)
     var enemies by observableProperty(enemies)
 
-    override fun onPropertyChange(vararg infos: PropertyChangeInfo) = infos.forEach { info ->
-        when (info.parent) {
-            is PlayerModel -> listeners.forEach { it.onPropertyChange(info) }
-            is EnemyModel -> listeners.forEach { it.onPropertyChange(info) }
+    override fun onPropertyChange(propertyAwareObject: PropertyAwareObject) {
+        when (propertyAwareObject) {
+            is PlayerModel -> listeners.forEach { it.onPropertyChange(this) }
+            is EnemyModel -> listeners.forEach { it.onPropertyChange(this) }
         }
     }
 
-    override fun changeHandler(prop: KProperty<*>, old: Any, new: Any) {
-        when (prop.name) {
-            "players" -> players.forEach { it.addPropertyChangeListener(this) }
-            "enemies" -> enemies.forEach { it.addPropertyChangeListener(this) }
+    private fun playersHandler(prop: KProperty<*>, old: Array<PlayerModel>, new: Array<PlayerModel>) {
+        changeHandler(prop, old, new)
+        new.forEach {
+            if (old.isEmpty()) it.addPropertyChangeListener(this)
+            else it.listeners.addAll(old[0].listeners)
         }
-        super.changeHandler(prop, old, new)
+        old.forEach { it.listeners.clear() }
     }
 }
