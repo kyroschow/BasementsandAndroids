@@ -1,3 +1,4 @@
+/*
 package com.bna.game.actor
 
 import com.badlogic.gdx.InputProcessor
@@ -89,3 +90,4 @@ open class Enemy(
     }
 
 }
+*/

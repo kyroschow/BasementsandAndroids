@@ -49,6 +49,7 @@ class BnaGame : KtxGame<Screen>() {
             bindSingleton(this@BnaGame)
             /*bindSingleton(Menu(inject(), inject()))   //TODO: incorrect imports
             bindSingleton(Game(inject(), inject()))*/
+
         }
         batch = SpriteBatch()
         img = Texture("badlogic.jpg")
