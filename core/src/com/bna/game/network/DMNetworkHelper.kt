@@ -32,4 +32,9 @@ class DMNetworkHelper(override var gameState: GameState, url: String, port: Shor
             }
         }
     }
+    
+    fun connectAsDM() {
+        socket.connect()
+        socket.emit("ConnectAsDM")
+    }
 }
