@@ -1,54 +1,55 @@
 package com.bna.game.network
 
-import com.beust.klaxon.JsonObject
 import com.bna.game.gdxLog
-import com.bna.game.model.GameState
-import com.bna.game.model.PropertyAwareListener
-import com.bna.game.model.PropertyAwareObject
-import kotlin.properties.Delegates
-import kotlin.reflect.KProperty
+import com.bna.game.model.PlayerModel
 
-class PlayerNetworkHelper(url: String, port: Short) : NetworkHelper(url, port), PropertyAwareListener {
+class PlayerNetworkHelper(url: String, port: Short, onGameStateChange: (GameStateChange) -> Unit) : GameNetworkHelper(url, port, onGameStateChange) {
+    lateinit var myModel: PlayerModel
+    var isTurn = false
 
-    var gameState: GameState by Delegates.observable(GameState(), ::gameStateChangeHandler)
-        private set
-    var isTurn: Boolean = false
-        private set
-    var onGameStateChange: (GameStateChange) -> Unit = { throw IllegalStateException("No listener attached") }
+    companion object {
+        const val SERVER_INIT_GAME_STATE = "ServerInitGameState"
+        const val START_GAME_CHANGE = "StartGameChange"
+        const val TURN_CHANGE = "TurnChange"
+    }
 
     override fun configSocketEvents() {
         super.configSocketEvents()
-        with(socket) {
-            on("InitGameStateFromServer") { //from null to actual object emitted from server
-                gameState = klaxon.parse<GameState>(it[0].toString())!!
+        socket.listenFor(SERVER_INIT_GAME_STATE, START_GAME_CHANGE, TURN_CHANGE)
+    }
+
+    override fun handleEvent(eventType: String, data: List<Any>) {
+        super.handleEvent(eventType, data)
+        when(eventType) {
+            SERVER_INIT_GAME_STATE -> {
+                gameState = data[0].toString().toGameState()
+                gameState.players.forEach { if(it.id == id) myModel = it }
             }
-            on("StartGameChange") {
-                onGameStateChange(StartGameChange(gameState))
-            }
-            on("TurnChange") {
-                val json = parser.parse(it[0].toString()) as JsonObject
-                isTurn = json.boolean("isTurn")!!
+            START_GAME_CHANGE -> onGameStateChange(StartGameChange(gameState))
+            TURN_CHANGE -> {
+                isTurn = (data[0].toString().toJsonObject()).boolean("isTurn")!!
                 onGameStateChange(TurnChange(isTurn))
-            }
-            on("UpdateGameStateChange") {
-                gameState = klaxon.parse<GameState>(it[0].toString())!!
-                onGameStateChange(UpdateGameStateChange(gameState))
             }
         }
     }
 
-    override fun onPropertyChange(propertyAwareObject: PropertyAwareObject) {
-        if (isTurn) emitUpdatedGameState(gameState)
-        else throw IllegalStateException("Cannot emit to server, invalid turn")
+    fun emitUpdatePlayerState() {
+        gdxLog(myModel.toString())
+        if (!isTurn) throw IllegalStateException("Not this player's turn!")
+        try {
+            socket.emit("UpdatePlayerStateToServer", myModel)
+        } catch (e: Exception) {
+            gdxLog("Cannot update player state to server", e)
+        }
     }
 
-    private fun gameStateChangeHandler(prop: KProperty<*>, old: GameState, new: GameState) {
-        new.listeners.addAll(old.listeners)
-        old.listeners.clear()
+    /**
+     * Apply changes to this player and emit to server
+     * Quick way of updating player position or status, without parsing the whole GameState
+     * Used for movement (up, down left right displays quickly on everyone's screen)
+     */
+    inline fun emitPlayerChange(change: PlayerModel.() -> Unit) {
+        myModel.apply(change)
+        emitUpdatePlayerState()
     }
 }
-
-sealed class GameStateChange
-data class StartGameChange(val gameState: GameState): GameStateChange()
-data class TurnChange(val turn: Boolean): GameStateChange()
-data class UpdateGameStateChange(val gameState: GameState): GameStateChange()
