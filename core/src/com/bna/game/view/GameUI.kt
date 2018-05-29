@@ -2,7 +2,6 @@ package com.bna.game.view
 
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.*
@@ -13,26 +12,27 @@ import ktx.app.KtxScreen
 class GameUI(val skin: Skin,val stage : Stage, val batch: Batch) : KtxScreen {
 
     override fun show(){
+        skin.add("badlogic", Texture("badlogic.jpg"))
         val table = Table(skin)
         val tableSection = VerticalGroup()
         val gridSection = VerticalGroup()
         val hContainer = HorizontalGroup()
         val iconList = getIcons()
 
-        var square = Sprite(Texture("")) //TODO: Make square texture
-        var squareWidth : Float = tableSection.width / 20
-        var squareHeight : Float = tableSection.height / 20
-        square.regionWidth = squareWidth.toInt()
-        square.regionHeight = squareHeight.toInt()
-        batch.begin()
+        val squareWidth : Float = tableSection.width / 20
+        val squareHeight : Float = tableSection.height / 20
+//        batch.begin()
         for (y in 0 until 20) {
             for (x in 0 until 20) {
-                square.x = x * squareWidth
-                square.y = y * squareHeight
-                square.draw(batch)
+//                square.x = x * squareWidth
+//                square.y = y * squareHeight
+//                square.draw(batch)
+                val square = Image(skin, "badlogic")
+                square.setBounds(x * squareWidth, y * squareWidth, squareWidth, squareHeight)
+                stage.addActor(square)
             }
         }
-        batch.end()
+//        batch.end()
 
 
         table.setFillParent(true)
@@ -44,10 +44,10 @@ class GameUI(val skin: Skin,val stage : Stage, val batch: Batch) : KtxScreen {
         dragdrop.addSource(object : DragAndDrop.Source(iconList) {
             val payload = DragAndDrop.Payload()
             override fun dragStart(event: InputEvent, x: Float, y: Float, pointer: Int): DragAndDrop.Payload {
-                val item = iconList.getSelected()
-                payload.setObject(item)
-                iconList.getItems().removeIndex(iconList.getSelectedIndex())
-                payload.setDragActor(iconList.selected)
+                val item = iconList.selected
+                payload.`object` = item
+                iconList.items.removeIndex(iconList.selectedIndex)
+                payload.dragActor = iconList.selected
                 /*payload.invalidDragActor =
                 payload.validDragActor = */ //TODO: DO AFTER GRID IS MADE
                 return payload
