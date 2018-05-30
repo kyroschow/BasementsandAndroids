@@ -2,17 +2,18 @@ package com.bna.game.view
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.ui.*
-import com.badlogic.gdx.scenes.scene2d.ui.List
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.scenes.scene2d.utils.DragAndDrop
+import com.badlogic.gdx.utils.viewport.StretchViewport
 import com.bna.game.view.actor.TokenActor
 import ktx.app.KtxGame
 
@@ -20,10 +21,12 @@ import ktx.app.KtxGame
  * Created by testaccount on 5/28/18.
  */
 const val TAG = "Game"
-class Game(val stage: Stage, val batch: Batch) : KtxGame<Screen>() {
+class Game : KtxGame<Screen>() {
 
     //squares.foreach { dnd.addTarget(it) }
-
+    private val stage: Stage by lazy {
+        Stage(StretchViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat()))
+    }
     override fun create() {
         Gdx.input.inputProcessor = stage
         val tokenActor = TokenActor()
@@ -92,6 +95,7 @@ class Game(val stage: Stage, val batch: Batch) : KtxGame<Screen>() {
         }
 
         val skin = Skin()
+        skin.add("default", Label.LabelStyle(BitmapFont(), Color.WHITE))
         skin.add("badlogic", Texture("badlogic.jpg"))
         val table = Table(skin)
         val tableSection = VerticalGroup()
@@ -100,10 +104,9 @@ class Game(val stage: Stage, val batch: Batch) : KtxGame<Screen>() {
         val squareWidth: Float = tableSection.width / 20
         val squareHeight: Float = tableSection.height / 20
         val squares = mutableListOf<Image>()
-        val tokens = List<TokenActor>(skin)
+        val square = Image(skin, "badlogic")
         for (y in 0..20) {
             for (x in 0..20) {
-                val square = Image(skin, "badlogic")
                 square.setBounds(x * squareWidth, y * squareWidth, squareWidth, squareHeight)
                 squares.add(square)
             }
