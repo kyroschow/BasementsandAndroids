@@ -28,23 +28,23 @@ class NetworkHelper(url: String) {
 
     fun disconnect() = socket.disconnect()
 
-    suspend fun joinAsPlayer(roomName: String): PlayerController = suspendCoroutine { continuation ->
+    suspend fun joinAsPlayer(roomName: String, callback: (PlayerGameStateChange) -> Unit): PlayerController = suspendCoroutine { continuation ->
         launch(continuation.context) {
             withTimeout(15, TimeUnit.SECONDS) { continuation.resumeWithException(TimeoutException("Server took to long to respond")) }
         }
         socket.emit("JoinAsPlayer", json("roomName" to roomName))
         socket.once("JoinedAsPlayer") {
-            continuation.resume(PlayerController())
+            continuation.resume(PlayerController(socket, callback))
         }
     }
 
-    suspend fun joinAsDM(gameStateJSON: String): DMController = suspendCoroutine { continuation ->
+    suspend fun joinAsDM(gameStateJSON: String, callback: (DMGameStateChange) -> Unit): DMController = suspendCoroutine { continuation ->
         launch(continuation.context) {
             withTimeout(15, TimeUnit.SECONDS) { continuation.resumeWithException(TimeoutException("Server took to long to respond")) }
         }
         socket.emit("JoinAsDM", json("gameState" to gameStateJSON))
         socket.once("JoinedAsPlayer") {
-            continuation.resume(DMController())
+            continuation.resume(DMController(socket, callback))
         }
     }
 }

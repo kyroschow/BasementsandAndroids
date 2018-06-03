@@ -1,5 +1,40 @@
 package com.bna.game.network
 
-class PlayerController {
+import io.socket.client.Socket
+import org.json.JSONObject
 
+class PlayerController(private val socket: Socket, private val callback: (PlayerGameStateChange) -> Unit) {
+    init {
+        configSocketEvents()
+    }
+
+    var isTurn: Boolean = false
+        private set
+
+    private fun configSocketEvents(): Unit = with(socket) {
+        on("PlayerGameStateUpdate") {
+            val json = it[0] as JSONObject
+            callback(PlayerGameStateUpdate(json.getJSONObject("gameState")))
+        }
+        on("TurnChangeSelf") {
+            isTurn = true
+            val json = it[0] as JSONObject
+            callback(TurnChangeSelf(json.getJSONObject("gameState")))
+        }
+        on("TurnChangeOther") {
+            isTurn = false
+            val json = it[0] as JSONObject
+            callback(TurnChangeOther(json.getJSONObject("gameState"), json.getInt("x"), json.getInt("y")))
+        }
+    }
+
+    fun updateGameState(gameState: JSONObject) {
+        require(isTurn) { "Incorrect Turn" }
+        socket.emit("UpdateGameState", json("gameState" to gameState.toString()))
+    }
+
+    fun updatePosition(x: Int, y: Int) {
+        require(isTurn) { "Incorrect Turn" }
+        socket.emit("UpdateSelfPosition", json("x" to x, "y" to y))
+    }
 }
