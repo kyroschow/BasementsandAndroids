@@ -1,3 +1,4 @@
+/*
 package com.bna.game.network
 
 import com.beust.klaxon.JsonObject
@@ -83,10 +84,12 @@ abstract class GameNetworkHelper(var url: String, var port: Short, var onGameSta
 
     protected fun String.toPlayerModel() = klaxon.parse<PlayerModel>(this)!!
 
-    /**
+    */
+/**
      * Apply changes to GameState and emits to server
      * For players, this will end their turn
-     */
+     *//*
+
     inline fun applyEmit(change: GameState.() -> Unit) {
         gameState.apply(change)
         emitUpdatedGameState()
@@ -98,4 +101,4 @@ abstract class GameNetworkHelper(var url: String, var port: Short, var onGameSta
     }
 
     protected fun Socket.listenFor(vararg events: String) = events.forEach { on(it, ::listener) }
-}
+}*/

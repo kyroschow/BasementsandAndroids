@@ -1,3 +1,4 @@
+/*
 package com.bna.game.network
 
 import com.bna.game.model.GameState
@@ -16,4 +17,4 @@ data class TurnChange(val turn: Boolean): GameStateChange()
 //dm
 data class PlayerJoinedChange(val id: String): GameStateChange()
 data class PlayerDisconnectedChange(val id: String): GameStateChange()
-data class PlayerTurnChange(val playerModel: PlayerModel): GameStateChange()
+data class PlayerTurnChange(val playerModel: PlayerModel): GameStateChange()*/

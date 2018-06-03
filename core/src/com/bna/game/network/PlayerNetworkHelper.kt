@@ -1,3 +1,4 @@
+/*
 package com.bna.game.network
 
 import com.bna.game.gdxLog
@@ -43,13 +44,15 @@ class PlayerNetworkHelper(url: String, port: Short, onGameStateChange: (GameStat
         }
     }
 
-    /**
+    */
+/**
      * Apply changes to this player and emit to server
      * Quick way of updating player position or status, without parsing the whole GameState
      * Used for movement (up, down left right displays quickly on everyone's screen)
-     */
+     *//*
+
     inline fun emitPlayerChange(change: PlayerModel.() -> Unit) {
         myModel.apply(change)
         emitUpdatePlayerState()
     }
-}
+}*/

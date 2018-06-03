@@ -1,3 +1,4 @@
+/*
 package com.bna.game.network
 
 import com.bna.game.model.GameState
@@ -38,3 +39,4 @@ class DMNetworkHelper(override var gameState: GameState, url: String, port: Shor
         socket.emit("ConnectAsDM")
     }
 }
+*/
