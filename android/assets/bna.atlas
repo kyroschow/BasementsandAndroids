@@ -1,0 +1,86 @@
+
+bna.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+druid
+  rotate: false
+  xy: 2, 2
+  size: 1750, 1772
+  orig: 1750, 1772
+  offset: 0, 0
+  index: -1
+mage
+  rotate: false
+  xy: 1754, 129
+  size: 256, 1645
+  orig: 256, 1645
+  offset: 0, 0
+  index: -1
+
+bna2.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bard
+  rotate: false
+  xy: 1507, 445
+  size: 389, 1325
+  orig: 389, 1325
+  offset: 0, 0
+  index: -1
+enemy
+  rotate: false
+  xy: 2, 2
+  size: 1503, 1768
+  orig: 1503, 1768
+  offset: 0, 0
+  index: -1
+
+bna3.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+fighter
+  rotate: false
+  xy: 2, 2
+  size: 1926, 1260
+  orig: 1926, 1260
+  offset: 0, 0
+  index: -1
+
+bna4.png
+size: 2048,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+barbarian
+  rotate: false
+  xy: 2, 2
+  size: 918, 1804
+  orig: 918, 1804
+  offset: 0, 0
+  index: -1
+rogue
+  rotate: false
+  xy: 922, 545
+  size: 933, 1261
+  orig: 933, 1261
+  offset: 0, 0
+  index: -1
+
+bna5.png
+size: 1024,2048
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+archer
+  rotate: false
+  xy: 2, 2
+  size: 826, 1133
+  orig: 826, 1133
+  offset: 0, 0
+  index: -1
