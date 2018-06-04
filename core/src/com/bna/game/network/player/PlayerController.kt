@@ -3,7 +3,11 @@ package com.bna.game.network.player
 import com.bna.game.gdxLog
 import com.bna.game.network.json
 import io.socket.client.Socket
+import kotlinx.coroutines.experimental.launch
+import kotlinx.coroutines.experimental.withTimeout
 import org.json.JSONObject
+import java.util.concurrent.TimeUnit
+import kotlin.coroutines.experimental.suspendCoroutine
 
 class PlayerController(private val socket: Socket, private val callback: (PlayerGameStateChange) -> Unit) {
     init {
@@ -56,13 +60,32 @@ class PlayerController(private val socket: Socket, private val callback: (Player
         }
     }
 
-    fun updateGameState(gameState: JSONObject) {
-        require(isTurn) { "Incorrect Turn" }
+    suspend fun updateGameState(gameState: JSONObject) = suspendCoroutine<Boolean>{ continuation ->
+        if (!isTurn) continuation.resumeWithException(IllegalStateException("Incorrect Turn"))
+        launch(continuation.context) {
+            withTimeout(15, TimeUnit.SECONDS) { continuation.resume(false) }
+        }
+        socket.once("Response") {
+            val json = it[0] as JSONObject
+            continuation.resume(json.getBoolean("changeApproved"))
+        }
         socket.emit("UpdateGameState", json("gameState" to gameState.toString()))
     }
 
-    fun updatePosition(x: Int, y: Int) {
+    suspend fun updatePosition(x: Int, y: Int)= suspendCoroutine<Boolean>{ continuation ->
+        if (!isTurn) continuation.resumeWithException(IllegalStateException("Incorrect Turn"))
+        launch(continuation.context) {
+            withTimeout(15, TimeUnit.SECONDS) { continuation.resume(false) }
+        }
+        socket.once("Response") {
+            val json = it[0] as JSONObject
+            continuation.resume(json.getBoolean("changeApproved"))
+        }
+        socket.emit("UpdateSelfPosition", json("newX" to x, "newY" to y))
+    }
+
+    fun endTurn() {
         require(isTurn) { "Incorrect Turn" }
-        socket.emit("UpdateSelfPosition", json("x" to x, "y" to y))
+        socket.emit("EndTurn")
     }
 }

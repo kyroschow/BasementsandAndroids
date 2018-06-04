@@ -51,4 +51,12 @@ class DMController(private val socket: Socket, private val callback: (DMGameStat
     fun updateGameState(gameState: JSONObject) {
         socket.emit("updateGameStateAsDM", json("gameState" to gameState.toString()))
     }
+
+    fun nextTurn() {
+        socket.emit("NextTurn")
+    }
+
+    fun startGame() {
+        socket.emit("StartGame")
+    }
 }

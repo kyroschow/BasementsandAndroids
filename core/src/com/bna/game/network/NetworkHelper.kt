@@ -46,7 +46,7 @@ class NetworkHelper(url: String) {
             withTimeout(15, TimeUnit.SECONDS) { continuation.resumeWithException(TimeoutException("Server took to long to respond")) }
         }
         socket.emit("JoinAsDM", json("gameState" to gameStateJSON))
-        socket.once("JoinedAsPlayer") {
+        socket.once("JoinedAsDM") {
             continuation.resume(DMController(socket, callback))
         }
     }
