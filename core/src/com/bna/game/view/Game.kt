@@ -51,7 +51,7 @@ class Game : KtxGame<Screen>() {
             add(fighter).pad(35f, 52f, 35f, 52f)
             add(mage).pad(35f, 52f, 35f, 52f)
             add(rogue).pad(35f, 52f, 35f, 52f)
-            add(tree).pad(35f, 52f, 35f, 52f)
+            add(druid).pad(35f, 52f, 35f, 52f)
             background = backgroundImage.drawable
             bottom().left()
             setWidthBackDrag(0f)

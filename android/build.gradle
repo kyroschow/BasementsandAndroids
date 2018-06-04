@@ -1,4 +1,12 @@
 android {
+    signingConfigs {
+        config {
+            keyAlias 'alias_name'
+            keyPassword 'android'
+            storeFile file('/home/testaccount/StudioProjects/basementsandandroids/my-release-key.keystore')
+            storePassword 'android'
+        }
+    }
     buildToolsVersion "27.0.3"
     compileSdkVersion 27
     sourceSets {
@@ -29,6 +37,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
 }
