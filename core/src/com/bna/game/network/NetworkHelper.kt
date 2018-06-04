@@ -1,5 +1,9 @@
 package com.bna.game.network
 
+import com.bna.game.network.dm.DMController
+import com.bna.game.network.dm.DMGameStateChange
+import com.bna.game.network.player.PlayerController
+import com.bna.game.network.player.PlayerGameStateChange
 import io.socket.client.IO
 import io.socket.client.Socket
 import kotlinx.coroutines.experimental.launch
@@ -12,8 +16,7 @@ import kotlin.properties.Delegates
 class NetworkHelper(url: String) {
     private val urlWithPort: String get() = "$url:8080"
     private var socket: Socket = IO.socket(urlWithPort)
-    var url: String by Delegates.observable(url) {
-        prop, old, new ->
+    var url: String by Delegates.observable(url) { _, _, _ ->
         socket.disconnect()
         socket = IO.socket(urlWithPort)
         socket.disconnect()

@@ -1,6 +1,7 @@
-package com.bna.game.network
+package com.bna.game.network.player
 
 import com.bna.game.gdxLog
+import com.bna.game.network.json
 import io.socket.client.Socket
 import org.json.JSONObject
 
@@ -30,6 +31,7 @@ class PlayerController(private val socket: Socket, private val callback: (Player
             val json = it[0] as JSONObject
             gdxLog("My ID: ${json.getInt("id")}")
         }
+        //custom events
         on("PlayerGameStateUpdate") {
             val json = it[0] as JSONObject
             callback(PlayerGameStateUpdate(json.getJSONObject("gameState")))
@@ -47,6 +49,10 @@ class PlayerController(private val socket: Socket, private val callback: (Player
         on("StartGame") {
             val json = it[0] as JSONObject
             callback(StartGame(json.getJSONObject("gameState")))
+        }
+        on("GameEnd") {
+            val json = it[0] as JSONObject
+            callback(PlayerGameEnd(json.getJSONObject("gameState")))
         }
     }
 
