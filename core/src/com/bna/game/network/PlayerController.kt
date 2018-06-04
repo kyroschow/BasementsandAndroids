@@ -1,5 +1,6 @@
 package com.bna.game.network
 
+import com.bna.game.gdxLog
 import io.socket.client.Socket
 import org.json.JSONObject
 
@@ -12,6 +13,23 @@ class PlayerController(private val socket: Socket, private val callback: (Player
         private set
 
     private fun configSocketEvents(): Unit = with(socket) {
+        on(Socket.EVENT_CONNECT) {
+            gdxLog("Connected")
+        }
+        on("PlayerConnectedChange") {
+            val json = it[0] as JSONObject
+            gdxLog("Player Connected, ID: ${json.getInt("id")}")
+            callback(OtherPlayerConnectionChange(true, json.getInt("id")))
+        }
+        on("PlayerDisconnectedChange") {
+            val json = it[0] as JSONObject
+            gdxLog("Player Disconnected, ID: ${json.getInt("id")}")
+            callback(OtherPlayerConnectionChange(false, json.getInt("id")))
+        }
+        on("SocketID") {
+            val json = it[0] as JSONObject
+            gdxLog("My ID: ${json.getInt("id")}")
+        }
         on("PlayerGameStateUpdate") {
             val json = it[0] as JSONObject
             callback(PlayerGameStateUpdate(json.getJSONObject("gameState")))
@@ -25,6 +43,10 @@ class PlayerController(private val socket: Socket, private val callback: (Player
             isTurn = false
             val json = it[0] as JSONObject
             callback(TurnChangeOther(json.getJSONObject("gameState"), json.getInt("x"), json.getInt("y")))
+        }
+        on("StartGame") {
+            val json = it[0] as JSONObject
+            callback(StartGame(json.getJSONObject("gameState")))
         }
     }
 
